@@ -13,14 +13,23 @@ export default function useAuth(code:string |string[]){
         }).then(res=>{
             setAccessToken(res.data.accessToken)
             setRefreshToken(res.data.refreshToken);
-            setExpiresIn(res.data.setExpiresIn);
-            window.history.pushState({},null,"/")
+            setExpiresIn(res.data.expiresIn);
+            // window.history.pushState({},null,"/")
         }).catch(()=>{
-            window.location.href="/"
+            // window.location.href="/"
         })
     },[code])
 
     useEffect(()=>{
+        axios.post('/api/refresh',{
+                refreshToken
+        }).then(data=>{
+            console.log(data)
+            // setAccessToken(data.data.accessToken)
+            // setExpiresIn(data.data.expiresIn);
+        }).catch(()=>{
+            // window.location.href="/"
+        })
 
     },[refreshToken,expiresIn])
     return accessToken
