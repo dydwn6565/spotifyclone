@@ -12,7 +12,7 @@ type Props = {};
 
 function Sidebar({}: Props) {
   return (
-    <div className="bg-black w-64 h-screen">
+    <div className="bg-black h-screen">
       <div className="flex justify-start items-center ">
         {/* <div className="text-3xl font-bold underline">Hello world!</div> */}
 
