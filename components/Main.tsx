@@ -19,9 +19,8 @@ function Main({}: Props) {
   // const [recentlyPlayedList, setRecentlyPlayedList] = useState(null);
   const recentlyPlayedList = useGetRecentlyPlayedTrack();
   const newReleaseAlbums = useGetNewReleaseAlbums();
-  const recommendationAlbum = useRecommendationAlbum();
-  // console.log(playlist);
-  // console.log(playlistid);
+  const recommendationAlbum = useRecommendationAlbum(); 
+
 
   // useEffect(()=>{
   //   setColor(shuffle(colors).pop());
@@ -37,74 +36,7 @@ function Main({}: Props) {
   //     .catch((err) => console.log("Something went wrong!", err));
   // }, [spotifyApi, playlistid])
 
-  // useEffect(() => {
-  //   if (spotifyApi.getCredentials().accessToken) {
-  //     spotifyApi
-  //       .getMyRecentlyPlayedTracks()
-  //       .then((data) => {
-  //         deleteDuplicatedImage(data.body.items);
-  //       })
-  //       .catch((err) => console.log("Something went wrong!", err));
-  //   }
-  // }, [spotifyApi]);
-
-  // useEffect(() => {
-
-  //   if (spotifyApi.getCredentials().accessToken) {
-
-  //     spotifyApi
-  //       .getNewReleases()
-  //       .then((data) => {
-  //         fetch(data.body.albums.href,{
-  //           method:"GET",
-  //           headers:{"Authorization" : `Bearer ${spotifyApi.getCredentials().accessToken}`,}
-  //         }).then((re)=>{
-  //           return re.json()
-  //             console.log(re.json)
-  //         }).then((result)=>{
-  //           console.log(result);
-  //         });
-  //         // console.log(data.body.albums.href)
-  //       })
-  //       .catch((err) => console.log("Something went wrong!", err));
-  //   }
-  // }, [spotifyApi]);
-
-
-  // useEffect(() => { 
-  //   if (spotifyApi.getCredentials().accessToken) {
-  //     spotifyApi
-  //       .getCategories()
-  //       .then((data) => {
-  //         console.log(data)
-  //       })
-  //       .catch((err) => console.log("Something went wrong!", err));
-  //   }
-  // }, [spotifyApi]);
-
-  // useEffect(() => {
-  //   if (spotifyApi.getCredentials().accessToken) {
-  //     spotifyApi
-  //       .getNewReleases()
-  //       .then((data) => {
-  //         console.log(data)
-  //       })
-  //       .catch((err) => console.log("Something went wrong!", err));
-  //   }
-  // }, [spotifyApi]);
-
   
-  // const deleteDuplicatedImage = (albums: Array<any>) => {
-  //   const newAlbumName = [];
-  //   const newAlbum = [];
-  //   albums.map((album) => {
-  //     if (!newAlbumName.includes(album.track.album.name)) {
-  //       newAlbumName.push(album.track.album.name);
-  //       newAlbum.push(album);
-  //     }
-  //   });
-  //   setRecentlyPlayedList(newAlbum);
-  // };
 
   return (
     <div className="p-5 bg-zinc-800 h-full">
@@ -192,11 +124,11 @@ function Main({}: Props) {
                     alt={album.album.images[1].url}
                   />
                   <div className="mt-8 mr-auto mb-8 ">
-                    {album.name.length > 10 ? (
+                    {album.name.length > 10 ? ( 
                       <div className="text-white">
                         {album.name.slice(0, 10) + "...."}
                       </div>
-                    ) : (
+                    ) : ( 
                       <div className="text-white">{album.name}</div>
                     )}
                     {album.artists[0].name.length > 10 ? (
@@ -205,7 +137,7 @@ function Main({}: Props) {
                       </div>
                     ) : (
                       <div className="text-white">{album.artists[0].name}</div>
-                    )}
+                    )} 
                   </div>
                 </div>
               </div>

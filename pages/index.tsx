@@ -13,13 +13,13 @@ export default function Home() {
     <>
       <div>
         <>
-          <div className="grid  grid-cols-6">
+          <div className="grid  grid-cols-6 h-full">
             <Sidebar />
 
             <div className="col-span-5">
               <Head />
               <Main />
-            </div>
+            </div> 
           </div>
         </>
       </div>
