@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import {
 //     Home
 // } from "@heroicons/react/outline"
@@ -8,11 +8,31 @@ import { VscLibrary } from "react-icons/vsc";
 import { BsSearch } from "react-icons/bs";
 import { GrHomeRounded } from "react-icons/gr";
 import { BiHeartSquare } from "react-icons/bi";
+import useSpotify from "../hooks/useSpotify";
+import { useSession } from "next-auth/react";
+import {useRecoilState} from "recoil"
+import {playlistIdState} from "../atoms/playlistAtom"
 type Props = {};
 
 function Sidebar({}: Props) {
+  const spotifyApi = useSpotify();
+  const { data: session, status } = useSession();
+  const [playlists, setPlaylists] = useState([]);
+  const [ playlistId,setPlaylistId]= useRecoilState (playlistIdState)
+
+  // console.log("you picked >>"+ playlistId);
+
+  useEffect(() => {
+    
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi.getUserPlaylists().then((data) => {
+        setPlaylists(data.body.items);
+        // console.log(data.body.items);
+      });
+    }
+  }, [session, spotifyApi]);
   return (
-    <div className="bg-black h-screen">
+    <div className="bg-black h-full">
       <div className="flex justify-start items-center ">
         {/* <div className="text-3xl font-bold underline">Hello world!</div> */}
 
@@ -53,6 +73,19 @@ function Sidebar({}: Props) {
         </div>
 
         <hr className="my-1  w-48 h-px bg-gray-100  border-0 md:my-10 dark:bg-gray-700" />
+        <div>
+          {playlists.map((playlist) => (
+            
+              <div
+                key={playlist.id}
+                onClick={() => setPlaylistId(playlist.id)}
+                className="text-white pb-3"
+              >
+                <>{playlist.name}</>
+              </div>
+            
+          ))}
+        </div>
       </div>
     </div>
   );

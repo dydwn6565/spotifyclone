@@ -1,0 +1,35 @@
+import React, { useState, useEffect } from "react";
+import useSpotify from "./useSpotify";
+
+function useGetNewReleaseAlbums() {
+  const spotifyApi = useSpotify();
+  const [newReleaseAlbums, setNewReleaseAlbums] = useState([]);
+  useEffect(() => {
+    if (spotifyApi.getCredentials().accessToken) {
+      spotifyApi
+        .getNewReleases()
+        .then((data) => {
+          fetch(data.body.albums.href, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${
+                spotifyApi.getCredentials().accessToken
+              }`,
+            },
+          })
+            .then((re) => {
+              return re.json();
+            })
+            .then((result) => {
+              // console.log(result);
+              setNewReleaseAlbums(result);
+            });
+        })
+        .catch((err) => console.log("Something went wrong!", err));
+    }
+  }, [spotifyApi]);
+
+  return newReleaseAlbums;
+}
+
+export default useGetNewReleaseAlbums;

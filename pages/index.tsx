@@ -9,11 +9,8 @@ import Head from "../components/Head";
 import Main from "../components/Main";
 
 export default function Home() {
-  
-
   return (
     <>
-    
       <div>
         <>
           <div className="grid  grid-cols-6">
@@ -24,14 +21,8 @@ export default function Home() {
               <Main />
             </div>
           </div>
-          {/* {console.log("his")} */}
         </>
-        {/* <Login /> */}
       </div>
-      {/* <Link href={{ pathname: "/login" }} hidden>
-          <a ref={clickLogin}>login</a>
-        </Link>
-      </div> */}
     </>
   );
 }

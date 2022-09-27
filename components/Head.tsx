@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react'
 // import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
@@ -19,7 +20,9 @@ function Head({}: Props) {
           <div className="text-white mt-1">Sign up</div>
           <div className="w-36 h-10 bg-white rounded-full">
             <div className="text-black flex justify-center items-center mt-1">
-              Log in
+              <Link href="/login">
+                <a >Log in</a>
+              </Link>
             </div>
           </div>
         </div>
