@@ -13,8 +13,8 @@ type Props = {};
 
 function Main({}: Props) {
   const spotifyApi = useSpotify();
-  // const playlistid = useRecoilValue(playlistIdState);
-  // const [playlist, setPlaylist] = useRecoilState(playlistState);
+  const playlistid = useRecoilValue(playlistIdState);
+  const [playlist, setPlaylist] = useRecoilState(playlistState);
   const [color, setColor] = useState(null);
   // const [recentlyPlayedList, setRecentlyPlayedList] = useState(null);
   const recentlyPlayedList = useGetRecentlyPlayedTrack();
@@ -26,15 +26,15 @@ function Main({}: Props) {
   //   setColor(shuffle(colors).pop());
   // },[playlistid])
 
-  // useEffect(() => {
-  //   spotifyApi
-  //     .getPlaylist(playlistid)
-  //     .then((data) => {
-  //       setPlaylist(data.body);
-  //       // console.log(data.body.tracks.items)
-  //     })
-  //     .catch((err) => console.log("Something went wrong!", err));
-  // }, [spotifyApi, playlistid])
+  useEffect(() => { 
+    spotifyApi
+      .getPlaylist(playlistid)
+      .then((data) => {
+        setPlaylist(data.body);
+        // console.log(data.body.tracks.items)
+      })
+      .catch((err) => console.log("Something went wrong!", err));
+  }, [spotifyApi, playlistid])
 
   
 

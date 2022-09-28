@@ -22,6 +22,7 @@ export default function Search() {
   useEffect(() => {
     console.log(search);
     if (search !== undefined && search !== "") {
+      
       spotifyApi.searchAlbums(search, { limit: 4, offset: 1 }).then((res) => {
         setSearchedAlbums(res);
       });

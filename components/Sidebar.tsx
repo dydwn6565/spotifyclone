@@ -11,13 +11,13 @@ import { BiHeartSquare } from "react-icons/bi";
 import useSpotify from "../hooks/useSpotify";
 import { useSession } from "next-auth/react";
 import {useRecoilState} from "recoil"
-import {playlistIdState} from "../atoms/playlistAtom"
+import {playlistIdState, playlistState} from "../atoms/playlistAtom"
 type Props = {};
 
 function Sidebar({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
-  const [playlists, setPlaylists] = useState([]);
+  const [playlists, setPlaylists] = useRecoilState(playlistState);
   const [ playlistId,setPlaylistId]= useRecoilState (playlistIdState)
 
   // console.log("you picked >>"+ playlistId);
@@ -29,7 +29,7 @@ function Sidebar({}: Props) {
         setPlaylists(data.body.items);
         // console.log(data.body.items);
       });
-    }
+    } 
   }, [session, spotifyApi]);
   return (
     <div className="bg-black h-full">
@@ -74,7 +74,7 @@ function Sidebar({}: Props) {
 
         <hr className="my-1  w-48 h-px bg-gray-100  border-0 md:my-10 dark:bg-gray-700" />
         <div>
-          {playlists.map((playlist) => (
+          {playlists?.map((playlist) => (
             
               <div
                 key={playlist.id}
