@@ -40,18 +40,34 @@ export default function Search() {
       
     }
   }, [spotifyApi, search]);
+   const searchHanlder = (e) => {
+     console.log(e);
+     // e === "" ? setSearchedAlbums("")  setSearch(e) : setSearch(e);
+     if (e === "") {
+       setSearchedAlbums("");
+       setSearchedArtists("");
+       setSearchedEpisodes("");
+       setSearchedShow("");
+       setSearch("");
+     } else {
+       setSearch(e);
+     }
+   };
   return (
     <>
-      <div className="grid  grid-cols-6">
+      <div className="grid  grid-cols-6 bg-zinc-900">
         <Sidebar />
 
         <div className="col-span-5">
-          <SearchHeader setSearch={setSearch} />
-
-          <SearchTopResult searcheadAlbums={searcheadAlbums} />
-          <SearchArtists searcheadArtists={searcheadArtists} />
-          <SearchEposides searcheadEpisodes={searcheadEpisodes} />
-          <SearchShows searcheadShow={searcheadShow} />
+          <SearchHeader searchHanlder={searchHanlder} />
+          {search !== undefined && search !== "" &&searcheadAlbums?.body.albums.items[0] !== undefined &&(
+            <>
+              <SearchTopResult searcheadAlbums={searcheadAlbums} />
+              <SearchArtists searcheadArtists={searcheadArtists} />
+              <SearchEposides searcheadEpisodes={searcheadEpisodes} />
+              <SearchShows searcheadShow={searcheadShow} />
+            </>
+           )} 
         </div>
       </div>
     </>

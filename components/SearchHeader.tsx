@@ -4,9 +4,9 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { BsSearch } from "react-icons/bs";
 import useSpotify from '../hooks/useSpotify';
 interface ChildPropsType {
-  setSearch: Dispatch<SetStateAction<string | undefined>>;
+  searchHanlder: Dispatch<SetStateAction<string | undefined>>;
 }
-const SearchHeader: FC<ChildPropsType> = ({ setSearch }) => {
+const SearchHeader: FC<ChildPropsType> = ({ searchHanlder }) => {
   // const spotifyApi = useSpotify();
   // const [search, setSearch] = useState<string |undefined>();
   // useEffect(() => {
@@ -53,7 +53,7 @@ const SearchHeader: FC<ChildPropsType> = ({ setSearch }) => {
           <input
             type="text"
             className=" ml-2 focus:outline-none"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => searchHanlder(e.target.value)}
           />
         </div>
         <div className="flex flex-row p-5 space-x-10 text-lg ">

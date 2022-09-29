@@ -1,8 +1,10 @@
+import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import useSpotify from "./useSpotify";
 
 function useGetNewReleaseAlbums() {
   const spotifyApi = useSpotify();
+  const { data: session, status } = useSession();
   const [newReleaseAlbums, setNewReleaseAlbums] = useState([]);
   useEffect(() => {
     if (spotifyApi.getCredentials().accessToken) {
@@ -27,7 +29,7 @@ function useGetNewReleaseAlbums() {
         })
         .catch((err) => console.log("Something went wrong!", err));
     }
-  }, [spotifyApi]);
+  }, [spotifyApi,session]);
 
   return newReleaseAlbums;
 }

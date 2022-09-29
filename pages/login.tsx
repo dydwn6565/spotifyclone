@@ -36,6 +36,18 @@ export default function Login({ providers }) {
               </div>
             </>
           ))}
+          {/* {console.log(Object.values(providers))}s
+          {Object.values(providers).map((provider: Provider) => {
+            <div>{provider.id}</div>;
+            
+            <div key={provider.name}>
+              <button onClick={() => signIn(provider.id, { callbackUrl: "/" })}>
+                <div> Login with {provider.name}</div>
+                
+              </button>
+              
+            </div>;
+          })} */}
         </>
       </div>
       {/* <a href={AUTH_URL}>login</a> */}

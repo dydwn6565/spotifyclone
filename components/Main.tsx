@@ -12,29 +12,30 @@ import useRecommendationAlbum from "../hooks/useGetPopularAlbum";
 type Props = {};
 
 function Main({}: Props) {
+    const recentlyPlayedList = useGetRecentlyPlayedTrack();
+    const newReleaseAlbums:any = useGetNewReleaseAlbums();
+    const recommendationAlbum = useRecommendationAlbum(); 
   const spotifyApi = useSpotify();
   const playlistid = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
   const [color, setColor] = useState(null);
   // const [recentlyPlayedList, setRecentlyPlayedList] = useState(null);
-  const recentlyPlayedList = useGetRecentlyPlayedTrack();
-  const newReleaseAlbums = useGetNewReleaseAlbums();
-  const recommendationAlbum = useRecommendationAlbum(); 
 
+                          
 
-  // useEffect(()=>{
-  //   setColor(shuffle(colors).pop());
-  // },[playlistid])
-
-  useEffect(() => { 
-    spotifyApi
-      .getPlaylist(playlistid)
-      .then((data) => {
-        setPlaylist(data.body);
-        // console.log(data.body.tracks.items)
-      })
-      .catch((err) => console.log("Something went wrong!", err));
-  }, [spotifyApi, playlistid])
+  // useEffect(()=>{ 
+  //   setColor(shuffle(colors).pop());   
+  // },[playlistid])                       
+            
+  // useEffect(() => {   
+  //   spotifyApi
+  //     .getPlaylist(playlistid)
+  //     .then((data) => {
+  //       setPlaylist(data.body);
+  //       // console.log(data.body.tracks.items)
+  //     })
+  //     .catch((err) => console.log("Something went wrong!", err));
+  // }, [spotifyApi, playlistid])
 
   
 

@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react';
 import React,{useState,useEffect} from 'react'
 import useSpotify from './useSpotify';
 
@@ -5,6 +6,7 @@ import useSpotify from './useSpotify';
 
 function useRecommendationAlbum ()  {
   const spotifyApi = useSpotify();
+  const { data: session, status } = useSession();
   const [recommendationAlbum, setRecommendationAlbum] = useState([]);
   useEffect(() => {
     if (spotifyApi.getCredentials().accessToken) {
@@ -20,7 +22,7 @@ function useRecommendationAlbum ()  {
           }); 
    
     }
-  }, [spotifyApi]);
+  }, [spotifyApi,session]);
   console.log(setRecommendationAlbum);
   return recommendationAlbum;
   

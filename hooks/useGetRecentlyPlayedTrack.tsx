@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import useSpotify from './useSpotify';
 
@@ -5,6 +6,7 @@ import useSpotify from './useSpotify';
 
 function useGetRecentlyPlayedTrack() {
     const spotifyApi = useSpotify();
+    const { data: session, status } = useSession();
     const [recentlyPlayedList,setRecentlyPlayedList] = useState([])
       useEffect(() => {
         if (spotifyApi.getCredentials().accessToken) {
@@ -15,7 +17,7 @@ function useGetRecentlyPlayedTrack() {
             })
             .catch((err) => console.log("Something went wrong!", err));
         }
-      }, [spotifyApi]);
+      }, [spotifyApi,session]);
 
        const deleteDuplicatedImage = (albums: Array<any>) => {
          const newAlbumName = [];
