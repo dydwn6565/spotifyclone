@@ -27,6 +27,19 @@ function Sidebar({}: Props) {
       });
     }
   }, [session, spotifyApi]);
+
+  const createPlayList =()=>{
+    console.log(playlists.length)
+    console.log(session.user)
+    if(spotifyApi){
+        
+      spotifyApi.createPlaylist(`My playlist #${playlists.length+1}`).then((res)=>{
+        console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+}
   return (
     <div className="bg-black h-full ">
       <div className="flex justify-start items-center mb-5 mt-5">
@@ -73,17 +86,17 @@ function Sidebar({}: Props) {
         </Link>
 
         <div>
-          <div className="flex justify-start items-center  pb-5">
+          <div className="flex justify-start items-center  pb-5 cursor-pointer">
             <BsPlusSquare className="scale-150 fill-white" />
-            <div className="pl-6 text-white">Make the playlist</div>
+            <div className="pl-6 text-white" onClick={createPlayList}>Make the playlist</div>
           </div>
         </div>
 
         <hr className="my-1  w-48 h-px bg-gray-100  border-0 md:my-10 dark:bg-gray-700" />
         <div>
           {playlists &&
-            playlists?.map((playlist) => (
-              <>
+            playlists?.map((playlist,index) => (
+              <div key={playlist.id+index}>
                 <Link href={`/playlist/${playlist.id}`}>
                   <div
                     key={playlist.id}
@@ -94,7 +107,7 @@ function Sidebar({}: Props) {
                     </>
                   </div>
                 </Link>
-              </>
+              </div>
             ))}
         </div>
       </div>

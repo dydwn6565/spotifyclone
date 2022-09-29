@@ -1,23 +1,24 @@
 import SpotifyWebApi from "spotify-web-api-node";
 
-const scopes =[
-    "user-read-email",
-    "playlist-read-private",
-    "playlist-read-collaborative",
-    "user-read-email",
-    "streaming",
-    "user-read-private",
-    "user-library-read",
-    "user-top-read",
-    // "user-library-modify",
-    
-    "user-read-playback-state",
-    "user-modify-playback-state",
-    "user-read-currently-playing",
-    "user-read-recently-played",
-    "user-follow-read"
-
-].join(',') //make one string
+const scopes = [
+  "user-read-email",
+  "playlist-read-private",
+  "playlist-read-collaborative",
+  "user-read-email",
+  "streaming",
+  "user-read-private",
+  "user-library-read",
+  "user-top-read",
+  "playlist-modify",
+  // "user-library-modify",
+  "playlist-modify-public",
+  "playlist-modify-private",
+  "user-read-playback-state",
+  "user-modify-playback-state",
+  "user-read-currently-playing",
+  "user-read-recently-played",
+  "user-follow-read",
+].join(","); //make one string
 
 const params = {
     scope:scopes,

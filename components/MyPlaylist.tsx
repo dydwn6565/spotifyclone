@@ -9,15 +9,17 @@ import {
   playlistState,
 } from "../atoms/playlistAtom";
 import { shuffle } from "lodash";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 import { AiOutlineClockCircle } from "react-icons/ai";
-import Link from "next/link";
+
 import { BsMusicNoteBeamed } from "react-icons/bs";
 
 import { millisToMinutesAndSeconds } from "../lib/millisToMinutesAndSeconds";
 import MyPlaylistSearch from "./MyPlaylistSearch";
 import Image from "next/image";
 import Head from "./Head";
+
+
 type Props = {};
 
 const colorList = ["blue", "green", "pink"];
@@ -36,7 +38,7 @@ function MyPlaylist({}: Props) {
   const [selectedPlaylist, setSelectedPlaylist] = useState<any>();
   const [track, setTrack] = useState<any>();
   const [recommendedSong, setRecommendedSong] = useState<any>();
- const [searcheadAlbums, setSearchedAlbums] = useState<any>();
+  const [searcheadAlbums, setSearchedAlbums] = useState<any>();
   useEffect(() => {
     const filterdPlayList = playlists?.filter((album) => {
       return album.id === pathname;
@@ -82,6 +84,8 @@ function MyPlaylist({}: Props) {
     }
   }, [selectedPlaylist, pathname, spotifyApi]);
 
+
+
   const subtractDate = (addedDate: string) => {
     const daysBetween = new Date().getDate() - new Date(addedDate).getDate();
     return daysBetween;
@@ -93,7 +97,18 @@ function MyPlaylist({}: Props) {
     setIsPlaying(true);
     // spotifyApi.play({uris:[songInfo.track.uri]})
   };
-  console.log(searcheadAlbums);
+  
+  
+
+  const addSongToPlaylist =(albumid:string) =>{
+    
+    spotifyApi.addTracksToPlaylist(pathname,[albumid]).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+  // console.log(selectedPlaylist);
   return (
     <div
       className={
@@ -182,38 +197,36 @@ function MyPlaylist({}: Props) {
           {selectedPlaylist &&
             selectedPlaylist[0]?.images[0] !== undefined &&
             track?.data.items.map((song, index) => (
-              <>
-                <div key={song.track.id}>
-                  <div
-                    className="  ml-10 p-2 grid grid-cols-11 items-center "
-                    onClick={() => playSong(index)}
-                  >
-                    <div className="text-white flex -ml-2  col-span-4">
-                      <div className="mr-5 mt-2">{index + 1}</div>
-                      <Image
-                        width={"48px"}
-                        height={"48px"}
-                        src={song.track.album.images[0].url}
-                        alt={song.track.album.id}
-                      />
-                      <div className=" text-white ml-2 ">
-                        <div>{song.track.name}</div>
-                        <div>{song.track.artists[0].name}</div>
-                      </div>
-                    </div>
-                    <div className="col-span-3 text-white">
-                      {song.track.album.name}
-                    </div>
-
-                    <div className="col-span-2 text-white">
-                      {subtractDate(song.added_at)}
-                    </div>
-                    <div className="text-white">
-                      {millisToMinutesAndSeconds(song.track.duration_ms)}
+              <div key={song.track.id + index}>
+                <div
+                  className="  ml-10 p-2 grid grid-cols-11 items-center "
+                  onClick={() => playSong(index)}
+                >
+                  <div className="text-white flex -ml-2  col-span-4">
+                    <div className="mr-5 mt-2">{index + 1}</div>
+                    <Image
+                      width={"48px"}
+                      height={"48px"}
+                      src={song.track.album.images[0].url}
+                      alt={song.track.album.id}
+                    />
+                    <div className=" text-white ml-2 ">
+                      <div>{song.track.name}</div>
+                      <div>{song.track.artists[0].name}</div>
                     </div>
                   </div>
+                  <div className="col-span-3 text-white">
+                    {song.track.album.name}
+                  </div>
+
+                  <div className="col-span-2 text-white">
+                    {subtractDate(song.added_at)}
+                  </div>
+                  <div className="text-white">
+                    {millisToMinutesAndSeconds(song.track.duration_ms)}
+                  </div>
                 </div>
-              </>
+              </div>
             ))}
         </div>
         {selectedPlaylist && selectedPlaylist[0]?.images[0] === undefined ? (
@@ -230,8 +243,8 @@ function MyPlaylist({}: Props) {
         )}
         <div>
           {selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined ? (
-            recommendedSong?.body.tracks.map((song) => (
-              <div key={song.album.id}>
+            recommendedSong?.body.tracks.map((song, index) => (
+              <div key={song.album.id + index}>
                 <div className="  ml-10 p-2 grid grid-cols-11 items-center">
                   <div className="text-white flex -ml-2  col-span-4">
                     <Image
@@ -247,7 +260,10 @@ function MyPlaylist({}: Props) {
                     </div>
                   </div>
                   <div className="col-span-5 text-white">{song.album.name}</div>
-                  <div className="h-10 w-20 rounded-full border-solid border-2 border-indigo-white text-white flex items-center justify-center">
+                  <div
+                    className="h-10 w-20 rounded-full border-solid border-2 border-indigo-white text-white flex items-center justify-center cursor-pointer"
+                    onClick={() => addSongToPlaylist(song.uri)}
+                  >
                     Add
                   </div>
                 </div>
@@ -257,6 +273,8 @@ function MyPlaylist({}: Props) {
             <MyPlaylistSearch
               searcheadAlbums={searcheadAlbums}
               setSearchedAlbums={setSearchedAlbums}
+              pathname={pathname}
+              addSongToPlaylist={addSongToPlaylist}
             />
           )}
         </div>
