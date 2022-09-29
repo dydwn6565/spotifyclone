@@ -18,12 +18,12 @@ function useRecommendationAlbum ()  {
           })
           .then((res) => {
             setRecommendationAlbum(res.body.tracks);
-            console.log(res);
+            // console.log(res);
           }); 
    
     }
   }, [spotifyApi,session]);
-  console.log(setRecommendationAlbum);
+  // console.log(setRecommendationAlbum);
   return recommendationAlbum;
   
 }

@@ -17,7 +17,7 @@ function Main({}: Props) {
       <title>Spotify</title>
       <h2 className="text-white text-2xl font-bold">Recently Played List</h2>
       <div className="flex mt-5 ">
-        <>{console.log(recommendationAlbum)}</>
+        {/* <>{console.log(recommendationAlbum)}</> */}
         {recentlyPlayedList &&
           recentlyPlayedList.map((song) => (
             <div key={song.track.album.images[0].url}>

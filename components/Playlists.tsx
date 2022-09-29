@@ -1,4 +1,5 @@
 import { sortedIndex } from "lodash";
+import Image from "next/image";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
@@ -7,10 +8,8 @@ import useSpotify from "../hooks/useSpotify";
 type Props = {};
 
 function Playlists({}: Props) {
-  const spotifyApi = useSpotify();
-
   const [playlist, setPlaylist] = useRecoilState(playlistState);
-  console.log(playlist);
+
   return (
     <div className=" bg-neutral-900 h-screen flex">
       <div>
@@ -31,11 +30,14 @@ function Playlists({}: Props) {
             key={song?.name}
           >
             {song.images[0] === undefined ? (
-              <img
-                className="h-36 w-36 mt-7 "
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2y2NpnUpDEDvCxwLfPw-VdQvuSnBFXExyw&usqp=CAU"
-                alt=""
-              />
+              <div className="mt-7">
+
+                <Image height={"144px"} width={"144px"}
+                  
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2y2NpnUpDEDvCxwLfPw-VdQvuSnBFXExyw&usqp=CAU"
+                  alt=""
+                />
+              </div>
             ) : (
               <img
                 src={song?.images[0]?.url}

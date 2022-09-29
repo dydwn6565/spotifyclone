@@ -19,30 +19,48 @@ export default function LibraryHead({}: Props) {
             <div
               className={
                 pathname === "playlists"
-                  ? "text-white text-lg cursor-pointer w-32 h-10 bg-slate-700 flex items-center justify-center rounded-lg"
+                  ? "text-white text-lg cursor-pointer w-24 h-10 bg-slate-700 flex items-center justify-center rounded-lg"
                   : "text-white text-lg cursor-pointer flex items-center justify-center"
               }
             >
-              Playlist
+              <Link href={"/collection/playlists"}>
+                <div className="text-white pb-3 cursor-pointer">
+                  <>
+                    <a>Playlist</a>
+                  </>
+                </div>
+              </Link>
             </div>
 
             <div
               className={
                 pathname === "artists"
-                  ? "text-white text-lg cursor-pointer w-32 h-10 bg-slate-700  flex items-center justify-center rounded-lg"
+                  ? "text-white text-lg cursor-pointer w-24 h-10 bg-slate-700  flex items-center justify-center rounded-lg"
                   : "text-white text-lg cursor-pointer flex items-center justify-center"
               }
             >
-              Artist
+              <Link href={"/collection/artists"}>
+                <div className="text-white pb-3 cursor-pointer">
+                  <>
+                    <a>Artist</a>
+                  </>
+                </div>
+              </Link>
             </div>
             <div
               className={
                 pathname === "albums"
-                  ? "text-white text-lg cursor-pointer w-32 h-10 bg-slate-700  flex items-center justify-center rounded-lg"
+                  ? "text-white text-lg cursor-pointer w-24 h-12 bg-slate-700  flex items-center justify-center rounded-lg"
                   : "text-white text-lg cursor-pointer flex items-center justify-center"
               }
             >
-              Album
+              <Link href={"/collection/albums"}>
+                <div className="text-white pb-3 cursor-pointer ">
+                  <>
+                    <a>Album</a>
+                  </>
+                </div>
+              </Link>
             </div>
           </div>
           <div className="flex flex-row p-5 space-x-10 text-lg ">

@@ -15,14 +15,14 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
           <div className="flex ">
             {searcheadEpisodes &&searcheadEpisodes?.body.episodes.items.map(
               (episode) => (
-                <>
+                <div key={episode.id}>
                   <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
                     <div className='mt-10'>
 
                     <Image width={"160px"} height={"160px"}
                       src={episode.images[0] !==undefined &&episode.images[0].url}
                       alt="episode"
-                      // className="w-40 h-40 mt-10 "
+                      
                     />
                     </div>
                     {episode.name.length > 10 ? (
@@ -41,7 +41,7 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               )
             )}
           </div>

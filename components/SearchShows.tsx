@@ -12,7 +12,7 @@ const SearchShows = (searcheadShow: Props) => {
           <div className="flex ">
             {searcheadShow&&searcheadShow?.searcheadShow?.body?.shows.items.map(
               (show) => (
-                <>
+                <div key={show.id}>
                   <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
                     <div className='mt-10'>
 
@@ -37,7 +37,7 @@ const SearchShows = (searcheadShow: Props) => {
                       <div className="text-white">{show.description}</div>
                     )}
                   </div>
-                </>
+                </div>
               )
             )}
           </div>
