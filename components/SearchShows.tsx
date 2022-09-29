@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 
@@ -13,11 +14,14 @@ const SearchShows = (searcheadShow: Props) => {
               (show) => (
                 <>
                   <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
-                    <img
+                    <div className='mt-10'>
+
+                    <Image width={"160px"} height={"160px"}
                       src={show.images[0] !==undefined &&show.images[0].url}
                       alt="episode"
-                      className="w-40 h-40 mt-10 "
+                      
                     />
+                    </div>
                     {show.name.length > 10 ? (
                       <div className="text-white">
                         {show.name.slice(0, 20) + "..."}
@@ -38,7 +42,7 @@ const SearchShows = (searcheadShow: Props) => {
             )}
           </div>
         </div>
-        <>{console.log(searcheadShow)}</>
+        
       </>
     </div>
   );

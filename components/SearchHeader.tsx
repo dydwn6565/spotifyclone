@@ -1,44 +1,12 @@
-import Link from 'next/link';
-import React,{FC,useState,useEffect,Dispatch,SetStateAction} from 'react'
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import Link from "next/link";
+import React, { FC, Dispatch, SetStateAction } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
-import useSpotify from '../hooks/useSpotify';
+
 interface ChildPropsType {
   searchHanlder: Dispatch<SetStateAction<string | undefined>>;
 }
 const SearchHeader: FC<ChildPropsType> = ({ searchHanlder }) => {
-  // const spotifyApi = useSpotify();
-  // const [search, setSearch] = useState<string |undefined>();
-  // useEffect(() => {
-  //   if (search) {
-  //     spotifyApi
-  //       .searchAlbums(search, { limit: 4, offset: 1 })
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-  //     spotifyApi
-  //       .searchArtists(search, { limit: 4, offset: 1 })
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-  //     spotifyApi
-  //       .searchEpisodes(search, { limit: 4, offset: 1 })
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-  //     spotifyApi
-  //       .searchShows(search, { limit: 4, offset: 1 })
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-  //     spotifyApi
-  //       .search(search, ["track", "album"], { limit: 5, offset: 1 })
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-  //   }
-  // }, [spotifyApi,search]);
-
   return (
     <div>
       <div className="flex justify-between bg-black">
@@ -71,4 +39,4 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder }) => {
   );
 };
 
-export default SearchHeader
+export default SearchHeader;

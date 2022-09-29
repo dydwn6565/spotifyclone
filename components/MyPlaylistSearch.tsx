@@ -1,37 +1,35 @@
-import axios from "axios";
-import React, { useState,useEffect } from "react";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
 import useSpotify from "../hooks/useSpotify";
 
-type Props = {}
+type Props = {};
 
 function MyPlaylistSearch({}: Props) {
-    const spotifyApi = useSpotify();
-    const [search, setSearch] = useState<string |undefined>();
-    const [searcheadAlbums, setSearchedAlbums] = useState<any>();
-    useEffect(()=>{
-        if(search !=="" && search !==undefined){
-        spotifyApi
-          .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
-          .then((res) => {
-            // spotifyApi.searchAlbums(search, { limit: 10, offset: 1 }).then((res) => {
-            setSearchedAlbums(res);
-          });
-        }
-    },[spotifyApi,search])
-
-    const searchHanlder =(e) =>{
-        console.log(e)
-        // e === "" ? setSearchedAlbums("")  setSearch(e) : setSearch(e);
-        if(e ===""){
-            setSearchedAlbums("")
-            setSearch("")
-        }else{
-            setSearch(e)
-        }
+  const spotifyApi = useSpotify();
+  const [search, setSearch] = useState<string | undefined>();
+  const [searcheadAlbums, setSearchedAlbums] = useState<any>();
+  useEffect(() => {
+    if (search !== "" && search !== undefined) {
+      spotifyApi
+        .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
+        .then((res) => {
+          setSearchedAlbums(res);
+        });
     }
-    console.log(search);
-    console.log(searcheadAlbums)
+  }, [spotifyApi, search]);
+
+  const searchHanlder = (e) => {
+    console.log(e);
+
+    if (e === "") {
+      setSearchedAlbums("");
+      setSearch("");
+    } else {
+      setSearch(e);
+    }
+  };
+
   return (
     <div className="">
       <div className=" w-96 h-12 rounded-lg mt-5 ml-10 bg-slate-600 flex justify-even items-center ">
@@ -50,8 +48,9 @@ function MyPlaylistSearch({}: Props) {
             <div className=" grid grid-cols-10 items-center">
               <div className="text-white flex ml-5 my-2 col-span-4">
                 <div className="mr-5 mt-2">{index + 1}</div>
-                <img
-                  className="h-12 w-12 "
+                <Image
+                  width={"48px"}
+                  height={"48px"}
                   src={song.album.images[0].url}
                   alt={song.album.id}
                 />
@@ -73,4 +72,4 @@ function MyPlaylistSearch({}: Props) {
   );
 }
 
-export default MyPlaylistSearch
+export default MyPlaylistSearch;

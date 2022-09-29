@@ -1,59 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { playlistIdState, playlistState } from "../atoms/playlistAtom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import spotifyApi from "../lib/spotify";
-import useSpotify from "../hooks/useSpotify";
-import shuffle from "lodash";
+import React from "react";
+
 import Image from "next/image";
 import useGetRecentlyPlayedTrack from "../hooks/useGetRecentlyPlayedTrack";
 import useGetNewReleaseAlbums from "../hooks/useGetNewReleaseAlbums";
-import useGetPopularAlbum from "../hooks/useGetPopularAlbum";
+
 import useRecommendationAlbum from "../hooks/useGetPopularAlbum";
 type Props = {};
 
 function Main({}: Props) {
-    const recentlyPlayedList = useGetRecentlyPlayedTrack();
-    const newReleaseAlbums:any = useGetNewReleaseAlbums();
-    const recommendationAlbum = useRecommendationAlbum(); 
-  const spotifyApi = useSpotify();
-  const playlistid = useRecoilValue(playlistIdState);
-  const [playlist, setPlaylist] = useRecoilState(playlistState);
-  const [color, setColor] = useState(null);
-  // const [recentlyPlayedList, setRecentlyPlayedList] = useState(null);
-
-                          
-
-  // useEffect(()=>{ 
-  //   setColor(shuffle(colors).pop());   
-  // },[playlistid])                       
-            
-  // useEffect(() => {   
-  //   spotifyApi
-  //     .getPlaylist(playlistid)
-  //     .then((data) => {
-  //       setPlaylist(data.body);
-  //       // console.log(data.body.tracks.items)
-  //     })
-  //     .catch((err) => console.log("Something went wrong!", err));
-  // }, [spotifyApi, playlistid])
-
-  
+  const recentlyPlayedList = useGetRecentlyPlayedTrack();
+  const newReleaseAlbums: any = useGetNewReleaseAlbums();
+  const recommendationAlbum = useRecommendationAlbum();
 
   return (
     <div className="p-5 bg-zinc-800 h-full">
       <title>Spotify</title>
       <h2 className="text-white text-2xl font-bold">Recently Played List</h2>
       <div className="flex mt-5 ">
-        {/* <>{console.log(recentlyPlayedList)}</>   */}
-        {/* <>{console.log(newReleaseAlbums)}</> */}
         <>{console.log(recommendationAlbum)}</>
         {recentlyPlayedList &&
           recentlyPlayedList.map((song) => (
             <div key={song.track.album.images[0].url}>
-              {/* {console.log(song)} */}
-              <div className="w-60 h-auto border-2 items-center flex  flex-col mr-3">
+              <div className="w-60 h-auto  items-center flex  flex-col mr-3">
                 <div className=" h-1/2 w-3/4  mt-5   ">
-                  <img
+                  <Image
+                    width={"200px"}
+                    height={"200px"}
                     src={song.track.album.images[1].url}
                     alt={song.track.album.images[1].url}
                   />
@@ -87,9 +59,14 @@ function Main({}: Props) {
         {newReleaseAlbums &&
           newReleaseAlbums.albums?.items.map((album) => (
             <div key={album.name}>
-              <div className="w-60 h-auto border-2 items-center flex  flex-col mr-3">
+              <div className="w-60 h-auto  items-center flex  flex-col mr-3">
                 <div className=" h-1/2 w-3/4  mt-5   ">
-                  <img src={album.images[1].url} alt={album.images[1].url} />
+                  <Image
+                    width={"200px"}
+                    height={"200px"}
+                    src={album.images[1].url}
+                    alt={album.images[1].url}
+                  />
                   <div className="mt-8 mr-auto mb-8 ">
                     {album.name.length > 10 ? (
                       <div className="text-white">
@@ -112,24 +89,26 @@ function Main({}: Props) {
           ))}
       </div>
       <h2 className="text-white text-2xl font-bold mt-5 mb-5">
-        recommendationAlbum  List
+        recommendationAlbum List
       </h2>
       <div className="flex overflow-hidden hover:overflow-auto">
         {recommendationAlbum &&
           recommendationAlbum.map((album) => (
             <div key={album.name}>
-              <div className="w-60 h-auto border-2 items-center flex  flex-col mr-3">
+              <div className="w-60 h-auto  items-center flex  flex-col mr-3">
                 <div className=" h-1/2 w-3/4  mt-5   ">
-                  <img
+                  <Image
+                    width={"200px"}
+                    height={"200px"}
                     src={album.album.images[1].url}
                     alt={album.album.images[1].url}
                   />
                   <div className="mt-8 mr-auto mb-8 ">
-                    {album.name.length > 10 ? ( 
+                    {album.name.length > 10 ? (
                       <div className="text-white">
                         {album.name.slice(0, 10) + "...."}
                       </div>
-                    ) : ( 
+                    ) : (
                       <div className="text-white">{album.name}</div>
                     )}
                     {album.artists[0].name.length > 10 ? (
@@ -138,7 +117,7 @@ function Main({}: Props) {
                       </div>
                     ) : (
                       <div className="text-white">{album.artists[0].name}</div>
-                    )} 
+                    )}
                   </div>
                 </div>
               </div>
