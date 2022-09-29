@@ -28,13 +28,12 @@ function Sidebar({}: Props) {
     }
   }, [session, spotifyApi]);
   return (
-    <div className="bg-black h-full">
-      <div className="flex justify-start items-center my-5">
+    <div className="bg-black h-full ">
+      <div className="flex justify-start items-center mb-5 mt-5">
         <RiSpotifyFill className="h-10 w-10 fill-slate-300 ml-8 " />
         <span className="text-3xl text-white">Spotify</span>
       </div>
       <div className="mx-10">
-        {/* <div className="flex justify-start items-center pb-5"> */}
         <Link href={"/"}>
           <div className="text-white pb-3 cursor-pointer">
             <>
@@ -47,7 +46,7 @@ function Sidebar({}: Props) {
             </>
           </div>
         </Link>
-        {/* </div> */}
+
         <Link href={"/search"}>
           <div className="text-white pb-3 cursor-pointer">
             <>
@@ -73,16 +72,11 @@ function Sidebar({}: Props) {
           </div>
         </Link>
 
-
         <div>
           <div className="flex justify-start items-center  pb-5">
             <BsPlusSquare className="scale-150 fill-white" />
             <div className="pl-6 text-white">Make the playlist</div>
           </div>
-          {/* <div className="flex justify-start items-center  ">
-            <BiHeartSquare className="scale-150 fill-white" />
-            <div className="pl-6 text-white">Make the playlist</div>
-          </div> */}
         </div>
 
         <hr className="my-1  w-48 h-px bg-gray-100  border-0 md:my-10 dark:bg-gray-700" />

@@ -17,6 +17,7 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 import { millisToMinutesAndSeconds } from "../lib/millisToMinutesAndSeconds";
 import MyPlaylistSearch from "./MyPlaylistSearch";
 import Image from "next/image";
+import Head from "./Head";
 type Props = {};
 
 const colorList = ["blue", "green", "pink"];
@@ -35,7 +36,7 @@ function MyPlaylist({}: Props) {
   const [selectedPlaylist, setSelectedPlaylist] = useState<any>();
   const [track, setTrack] = useState<any>();
   const [recommendedSong, setRecommendedSong] = useState<any>();
-
+ const [searcheadAlbums, setSearchedAlbums] = useState<any>();
   useEffect(() => {
     const filterdPlayList = playlists?.filter((album) => {
       return album.id === pathname;
@@ -92,17 +93,19 @@ function MyPlaylist({}: Props) {
     setIsPlaying(true);
     // spotifyApi.play({uris:[songInfo.track.uri]})
   };
-
+  console.log(searcheadAlbums);
   return (
     <div
       className={
         selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined
           ? "w-full h-full bg-gradient-to-b from-blue-500 to-black"
-          : "w-full h-full bg-slate-900"
+          : searcheadAlbums?.body?.tracks?.items[0]
+          ? "w-full h-full bg-slate-900"
+          : "w-full h-screen bg-slate-900"
       }
     >
       <div>
-        <div className="flex justify-between ">
+        {/* <div className="flex justify-between ">
           <div className="flex flex-row p-5 space-x-5">
             <div className="h-10 w-10 rounded-full bg-black flex items-center">
               <IoIosArrowBack className="w-8 h-8  text-white" />
@@ -121,29 +124,26 @@ function MyPlaylist({}: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <Head />
         <div className="flex">
           {selectedPlaylist && selectedPlaylist[0]?.images[0] === undefined ? (
-            <div className="h-72 w-72 bg-slate-700 ml-7 flex items-center justify-center">
+            <div className="h-72 w-72 bg-slate-700 ml-7 flex items-center justify-center mt-5">
               <div className="text-7xl ">
                 <BsMusicNoteBeamed />
               </div>
             </div>
           ) : (
-            <div className="ml-7">
-
-              <Image width={"288px"} height={"288px"}
+            <div className="ml-7 mt-5">
+              <Image
+                width={"288px"}
+                height={"288px"}
                 src={selectedPlaylist && selectedPlaylist[0].images[0].url}
                 alt={selectedPlaylist && selectedPlaylist[0].name}
-                
               />
             </div>
           )}
-          {/* <img
-            src={ selectedPlaylist && selectedPlaylist[0].images[0].url }
-            alt={selectedPlaylist && selectedPlaylist[0].name}
-            className="w-72 h-72 ml-7"
-          /> */}
+
           <div>
             <div className="text-white ml-5 mt-10">
               {selectedPlaylist && selectedPlaylist[0].type}
@@ -166,7 +166,7 @@ function MyPlaylist({}: Props) {
             </div>
           </div>
         </div>
-       
+
         {selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined && (
           <div className="grid grid-cols-12 mt-10 text-white mb-5">
             <div className="col-span-5 ml-10"># Title</div>
@@ -183,31 +183,34 @@ function MyPlaylist({}: Props) {
             selectedPlaylist[0]?.images[0] !== undefined &&
             track?.data.items.map((song, index) => (
               <>
-                <div
-                  className="  ml-10 p-2 grid grid-cols-11 items-center "
-                  onClick={() => playSong(index)}
-                >
-                  <div className="text-white flex -ml-2  col-span-4">
-                    <div className="mr-5 mt-2">{index + 1}</div>
-                    <Image width={"48px"} height={"48px"}
-                      
-                      src={song.track.album.images[0].url}
-                      alt={song.track.album.id}
-                    />
-                    <div className=" text-white ml-2 ">
-                      <div>{song.track.name}</div>
-                      <div>{song.track.artists[0].name}</div>
+                <div key={song.track.id}>
+                  <div
+                    className="  ml-10 p-2 grid grid-cols-11 items-center "
+                    onClick={() => playSong(index)}
+                  >
+                    <div className="text-white flex -ml-2  col-span-4">
+                      <div className="mr-5 mt-2">{index + 1}</div>
+                      <Image
+                        width={"48px"}
+                        height={"48px"}
+                        src={song.track.album.images[0].url}
+                        alt={song.track.album.id}
+                      />
+                      <div className=" text-white ml-2 ">
+                        <div>{song.track.name}</div>
+                        <div>{song.track.artists[0].name}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-span-3 text-white">
-                    {song.track.album.name}
-                  </div>
+                    <div className="col-span-3 text-white">
+                      {song.track.album.name}
+                    </div>
 
-                  <div className="col-span-2 text-white">
-                    {subtractDate(song.added_at)}
-                  </div>
-                  <div className="text-white">
-                    {millisToMinutesAndSeconds(song.track.duration_ms)}
+                    <div className="col-span-2 text-white">
+                      {subtractDate(song.added_at)}
+                    </div>
+                    <div className="text-white">
+                      {millisToMinutesAndSeconds(song.track.duration_ms)}
+                    </div>
                   </div>
                 </div>
               </>
@@ -227,11 +230,13 @@ function MyPlaylist({}: Props) {
         )}
         <div>
           {selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined ? (
-            recommendedSong?.body.tracks.map((song, index) => (
-              <>
+            recommendedSong?.body.tracks.map((song) => (
+              <div key={song.album.id}>
                 <div className="  ml-10 p-2 grid grid-cols-11 items-center">
                   <div className="text-white flex -ml-2  col-span-4">
-                    <Image width={"48px"} height={"48px"}
+                    <Image
+                      width={"48px"}
+                      height={"48px"}
                       className="h-12 w-12 "
                       src={song.album.images[0].url}
                       alt={song.album.id}
@@ -246,10 +251,13 @@ function MyPlaylist({}: Props) {
                     Add
                   </div>
                 </div>
-              </>
+              </div>
             ))
           ) : (
-            <MyPlaylistSearch />
+            <MyPlaylistSearch
+              searcheadAlbums={searcheadAlbums}
+              setSearchedAlbums={setSearchedAlbums}
+            />
           )}
         </div>
       </div>

@@ -12,12 +12,12 @@ export default function Search() {
   const spotifyApi = useSpotify();
   const [search, setSearch] = useState<string | undefined>();
   const [searcheadAlbums, setSearchedAlbums] = useState<any>();
-  const [searcheadArtists, setSearchedArtists] = useState<Object | undefined>();
+  const [searcheadArtists, setSearchedArtists] = useState<any>();
   const [searcheadEpisodes, setSearchedEpisodes] = useState<
-    Object | undefined
+    any
   >();
-  const [searcheadShow, setSearchedShow] = useState<Object | undefined>();
-  const [searcheadPopular, setSearchedPopular] = useState<Object | undefined>();
+  const [searcheadShow, setSearchedShow] = useState<any>();
+  
 
   useEffect(() => {
     console.log(search);
@@ -40,8 +40,11 @@ export default function Search() {
       
     }
   }, [spotifyApi, search]);
+  console.log( search !== undefined &&
+          search !== "" &&
+          searcheadAlbums?.body?.albums?.items[0] !== undefined);
    const searchHanlder = (e) => {
-     console.log(e);
+    //  console.log(e);
      
      if (e === "") {
        setSearchedAlbums("");
@@ -55,19 +58,34 @@ export default function Search() {
    };
   return (
     <>
-      <div className={search !== undefined && search !== ""? "grid  grid-cols-6 bg-zinc-900 h-full":"grid  grid-cols-6 bg-zinc-900 h-screen"}>
+      <div
+        className={
+          search !== undefined &&
+          search !== "" &&
+          searcheadAlbums?.body?.albums?.items[0] !== undefined &&
+          searcheadArtists?.body?.artists?.items[0] !== undefined &&
+          searcheadEpisodes?.body?.episodes?.items[0] !== undefined &&
+          searcheadAlbums?.body?.albums?.items[0] !== undefined
+            ? "grid  grid-cols-6 bg-zinc-900 h-full"
+            : // : searcheadAlbums?.body?.albums?.items[0] ===undefined
+              // ? "grid  grid-cols-6 bg-zinc-900 h-screen"
+              "grid  grid-cols-6 bg-zinc-900 h-screen"
+        }
+      >
         <Sidebar />
 
         <div className="col-span-5">
           <SearchHeader searchHanlder={searchHanlder} />
-          {search !== undefined && search !== "" &&searcheadAlbums?.body?.albums.items[0] !== undefined &&(
-            <>
-              <SearchTopResult searcheadAlbums={searcheadAlbums} />
-              <SearchArtists searcheadArtists={searcheadArtists} />
-              <SearchEposides searcheadEpisodes={searcheadEpisodes} />
-              <SearchShows searcheadShow={searcheadShow} />
-            </>
-           )} 
+          {search !== undefined &&
+            search !== "" &&
+            searcheadAlbums?.body?.albums.items[0] !== undefined && (
+              <>
+                <SearchTopResult searcheadAlbums={searcheadAlbums} />
+                <SearchArtists searcheadArtists={searcheadArtists} />
+                <SearchEposides searcheadEpisodes={searcheadEpisodes} />
+                <SearchShows searcheadShow={searcheadShow} />
+              </>
+            )}
         </div>
       </div>
     </>

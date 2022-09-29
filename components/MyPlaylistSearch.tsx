@@ -1,16 +1,22 @@
+import { debounce } from "lodash";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction,useCallback } from "react";
 import { BsSearch } from "react-icons/bs";
 import useSpotify from "../hooks/useSpotify";
 
-type Props = {};
+type Props = {
+  searcheadAlbums: any;
+  setSearchedAlbums: Dispatch<SetStateAction<any | undefined>>;
+};
 
-function MyPlaylistSearch({}: Props) {
+function MyPlaylistSearch({ setSearchedAlbums, searcheadAlbums }: Props) {
   const spotifyApi = useSpotify();
   const [search, setSearch] = useState<string | undefined>();
-  const [searcheadAlbums, setSearchedAlbums] = useState<any>();
+
   useEffect(() => {
     if (search !== "" && search !== undefined) {
+      // debouncedSearchedAlbum();
+      setSearchedAlbums("");
       spotifyApi
         .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
         .then((res) => {
@@ -22,14 +28,27 @@ function MyPlaylistSearch({}: Props) {
   const searchHanlder = (e) => {
     console.log(e);
 
-    if (e === "") {
+    if (e === "" || e===" ") {
+      
+      
       setSearchedAlbums("");
+      console.log(searcheadAlbums)
       setSearch("");
     } else {
       setSearch(e);
     }
   };
-
+  // const debouncedSearchedAlbum = useCallback(
+  //   debounce (() => {
+  //     console.log(search)
+  //      spotifyApi
+  //        .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
+  //        .then((res) => {
+  //          setSearchedAlbums(res);
+  //        });
+  //   }, 500),
+  //   []
+  // );
   return (
     <div className="">
       <div className=" w-96 h-12 rounded-lg mt-5 ml-10 bg-slate-600 flex justify-even items-center ">
@@ -44,10 +63,11 @@ function MyPlaylistSearch({}: Props) {
       </div>
       {searcheadAlbums &&
         searcheadAlbums.body.tracks.items.map((song, index) => (
-          <>
-            <div className=" grid grid-cols-10 items-center">
+          
+          <div key={song.album.id+index}>
+            <div className=" grid grid-cols-10 items-center mt-5">
               <div className="text-white flex ml-5 my-2 col-span-4">
-                <div className="mr-5 mt-2">{index + 1}</div>
+                
                 <Image
                   width={"48px"}
                   height={"48px"}
@@ -66,7 +86,7 @@ function MyPlaylistSearch({}: Props) {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         ))}
     </div>
   );

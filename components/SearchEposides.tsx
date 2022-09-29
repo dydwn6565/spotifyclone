@@ -10,20 +10,24 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
   return (
     <div>
       <>
+        {searcheadEpisodes && searcheadEpisodes?.body?.episodes?.items[0] !==undefined && 
         <div className="ml-10">
           <div className="text-3xl mt-2 text-white ">Episodes</div>
           <div className="flex ">
-            {searcheadEpisodes &&searcheadEpisodes?.body.episodes.items.map(
-              (episode) => (
+            {searcheadEpisodes &&
+              searcheadEpisodes?.body.episodes.items.map((episode) => (
                 <div key={episode.id}>
                   <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
-                    <div className='mt-10'>
-
-                    <Image width={"160px"} height={"160px"}
-                      src={episode.images[0] !==undefined &&episode.images[0].url}
-                      alt="episode"
-                      
-                    />
+                    <div className="mt-10">
+                      <Image
+                        width={"160px"}
+                        height={"160px"}
+                        src={
+                          episode.images[0] !== undefined &&
+                          episode.images[0].url
+                        }
+                        alt="episode"
+                      />
                     </div>
                     {episode.name.length > 10 ? (
                       <div className="text-white">
@@ -42,10 +46,9 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
                     </div>
                   </div>
                 </div>
-              )
-            )}
+              ))}
           </div>
-        </div>
+        </div>}
       </>
     </div>
   );
