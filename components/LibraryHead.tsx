@@ -2,12 +2,14 @@ import Link from 'next/link';
 import React from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useRouter } from "next/router";
+import { useSession } from 'next-auth/react';
+import VerifiedLogin from './VerifiedLogin';
 type Props = {}
 
 export default function LibraryHead({}: Props) {
     const router = useRouter();
     const pathname = router.pathname.split("/")[2]
-    
+    const { data: session, status } = useSession();
   return (
     <div>
       <div>
@@ -63,6 +65,12 @@ export default function LibraryHead({}: Props) {
               </Link>
             </div>
           </div>
+          {session ? (
+            <div className='mr-10'>
+
+              <VerifiedLogin />
+            </div>
+          ) : (
           <div className="flex flex-row p-5 space-x-10 text-lg ">
             <div className="text-white mt-1">Sign up</div>
             <div className="w-36 h-10 bg-white rounded-full">
@@ -73,7 +81,8 @@ export default function LibraryHead({}: Props) {
               </div>
             </div>
           </div>
-        </div>
+                  )}
+         </div>
       </div>
     </div>
   );
