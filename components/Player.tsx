@@ -55,20 +55,20 @@ function Player({}: Props) {
   }, [currentTrackIdState, spotifyApi, session, currentTrackId]);
   console.log(songInfo);
 
-  useEffect(() => {
-    if (volume > 10 && volume < 100) {
-      debouncedAdjustVolume(volume);
-    }
-  }, [volume]);
+  // useEffect(() => {
+  //   if (volume > 10 && volume < 100) {
+  //     debouncedAdjustVolume(volume);
+  //   }
+  // }, [volume]);
 
-  const debouncedAdjustVolume = useCallback(
-    debounce((volume) => {
-      spotifyApi.setVolume(volume).catch((error) => {
-        console.log(error);
-      });
-    }, 500),
-    []
-  );
+  // const debouncedAdjustVolume = useCallback(
+  //   debounce((volume) => {
+  //     spotifyApi.setVolume(volume).catch((error) => {
+  //       console.log(error);
+  //     });
+  //   }, 500),
+  //   []
+  // );
 
   return (
     <div className="sticky bottom-0  h-24 bg-slate-800 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
@@ -78,7 +78,7 @@ function Player({}: Props) {
           height={"40px"}
           className="hidden md:inline "
           src={songInfo?.data.album.images?.[0]?.url}
-          alt=""
+          alt={songInfo?.data.album.images?.[0]?.url}
         />
         <div>
           <h3>{songInfo?.data.name}</h3>

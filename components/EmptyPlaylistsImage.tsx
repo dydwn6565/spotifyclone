@@ -1,13 +1,13 @@
-import { sortedIndex } from "lodash";
+
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
-import { playlistIdState, playlistState } from "../atoms/playlistAtom";
-import useSpotify from "../hooks/useSpotify";
+import {  playlistState } from "../atoms/playlistAtom";
+
 
 type Props = {};
 
-function Playlists({}: Props) {
+function EmptyPlaylistsImage({}: Props) {
   const [playlist, setPlaylist] = useRecoilState(playlistState);
 
   return (
@@ -23,26 +23,26 @@ function Playlists({}: Props) {
         </div>
         <div></div>
       </div>
-      {playlist?.map((song) => (
+      {playlist?.map((song,index) => (
         <>
           <div
             className="h-72 w-48 mt-20 ml-5 bg-neutral-800 flex items-center flex-col"
-            key={song?.name}
+            key={song?.name+index}
           >
             {song.images[0] === undefined ? (
               <div className="mt-7">
-
-                <Image height={"144px"} width={"144px"}
-                  
+                <Image
+                  height={"144px"}
+                  width={"144px"}
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs2y2NpnUpDEDvCxwLfPw-VdQvuSnBFXExyw&usqp=CAU"
                   alt=""
                 />
               </div>
             ) : (
-              <img
+              <Image width={"144px"} height={"144px"}
                 src={song?.images[0]?.url}
                 alt={song?.name}
-                className="h-36 w-36 mt-7"
+                className="mt-7"
               />
             )}
             <div className="text-white my-3">{song.name}</div>
@@ -54,4 +54,4 @@ function Playlists({}: Props) {
   );
 }
 
-export default Playlists;
+export default EmptyPlaylistsImage;

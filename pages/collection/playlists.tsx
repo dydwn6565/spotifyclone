@@ -2,7 +2,7 @@ import React from 'react'
 import { useRecoilState } from 'recoil';
 import { playlistState } from '../../atoms/playlistAtom';
 import LibraryHead from '../../components/LibraryHead';
-import Playlists from '../../components/Playlists';
+import EmptyPlaylistsImage from "../../components/EmptyPlaylistsImage";
 
 
 import Sidebar from '../../components/Sidebar'
@@ -21,8 +21,7 @@ function mylibrary({}: Props) {
 
         <div className="col-span-5">
           <LibraryHead />
-          <Playlists />
-          
+          <EmptyPlaylistsImage />
         </div>
       </div>
     </div>

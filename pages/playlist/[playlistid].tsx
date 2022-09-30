@@ -1,10 +1,11 @@
-import React from 'react'
-import Head from '../../components/Head';
-import MyPlaylist from '../../components/MyPlaylist'
-import Player from '../../components/Player';
-import Sidebar from '../../components/Sidebar';
+import React from "react";
+import Head from "../../components/Head";
+import MyPlaylist from "../../components/MyPlaylist";
+import Player from "../../components/Player";
+import Playlist from "../../components/Playlist";
+import Sidebar from "../../components/Sidebar";
 
-type Props = {}
+type Props = {};
 
 function playlistid({}: Props) {
   return (
@@ -14,14 +15,13 @@ function playlistid({}: Props) {
           <Sidebar />
 
           <div className="col-span-5">
-            
-            <MyPlaylist />
+            <Playlist />
           </div>
         </div>
-            <Player />
+        <Player />
       </>
     </div>
   );
 }
 
-export default playlistid
+export default playlistid;

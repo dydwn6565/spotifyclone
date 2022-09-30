@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 
 import Image from "next/image";
 import useGetRecentlyPlayedTrack from "../hooks/useGetRecentlyPlayedTrack";
@@ -6,13 +6,34 @@ import useGetNewReleaseAlbums from "../hooks/useGetNewReleaseAlbums";
 
 import useRecommendationAlbum from "../hooks/useGetPopularAlbum";
 import Head from "./Head";
+
+import useSpotify from "../hooks/useSpotify";
+import { useRecoilState } from "recoil";
+import { playlistState, selectedPlaylists } from "../atoms/playlistAtom";
+import Link from "next/link";
 type Props = {};
 
 function Main({}: Props) {
   const recentlyPlayedList = useGetRecentlyPlayedTrack();
   const newReleaseAlbums: any = useGetNewReleaseAlbums();
   const recommendationAlbum = useRecommendationAlbum();
+  const [selectedPlaylist, setSelectedPlaylist] =
+    useRecoilState(selectedPlaylists);
+  const [albumid, setAlbumid] = useState("");
 
+  const linktoPlaylist = useRef<any | undefined>();
+
+  const linkToPlaylists = (selectedAlbumid) => {
+    setAlbumid(selectedAlbumid);
+    // spotifyApi
+    //   .getAlbum(selectedAlbumid)
+    //   .then((res) => {
+
+    //     setSelectedPlaylist(res.body);
+    //     console.log(res);
+    //   }).then((result)=>{
+    window.location.href = `/playlist/${selectedAlbumid}`;
+  };
   return (
     <>
       <div className=" bg-zinc-800 h-full">
@@ -23,11 +44,14 @@ function Main({}: Props) {
             Recently Played List
           </h2>
           <div className="flex mt-5 ">
-            {/* <>{console.log(recommendationAlbum)}</> */}
             {recentlyPlayedList &&
               recentlyPlayedList.map((song) => (
                 <div key={song.track.album.images[0].url}>
-                  <div className="w-60 h-auto  items-center flex  flex-col mr-3">
+                  <>{/* {console.log(song)} */}</>
+                  <div
+                    className="w-60 h-auto  items-center flex  flex-col mr-3"
+                    onClick={() => linkToPlaylists(song.track.album.id)}
+                  >
                     <div className=" h-1/2 w-3/4  mt-5   ">
                       <Image
                         width={"200px"}
@@ -136,6 +160,9 @@ function Main({}: Props) {
           </div>
         </div>
       </div>
+      {/* <Link href={`/playlist/my/${albumid}`}>
+        <a ref={linktoPlaylist}></a>
+      </Link> */}
     </>
   );
 }

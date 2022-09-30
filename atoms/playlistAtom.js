@@ -20,3 +20,9 @@ export const isPlayingState = atom({
   key: "isPlayingState",
   default: null,
 });
+
+
+export const selectedPlaylists = atom({
+  key: "selectedPlaylist",
+  default: null,
+});

@@ -7,6 +7,7 @@ import {
   currentTrackIdState,
   isPlayingState,
   playlistState,
+  selectedPlaylists,
 } from "../atoms/playlistAtom";
 import { shuffle } from "lodash";
 
@@ -19,7 +20,6 @@ import MyPlaylistSearch from "./MyPlaylistSearch";
 import Image from "next/image";
 import Head from "./Head";
 
-
 type Props = {};
 
 const colorList = ["blue", "green", "pink"];
@@ -27,7 +27,7 @@ const colorList = ["blue", "green", "pink"];
 function MyPlaylist({}: Props) {
   const spotifyApi = useSpotify();
   const router = useRouter();
-  const pathname = router.asPath.split("/")[2];
+  const pathname = router.asPath.split("/")[3];
 
   const [playlists, setPlaylists] = useRecoilState(playlistState);
   const [currentTrackId, setCurrentTrackId] =
@@ -35,6 +35,8 @@ function MyPlaylist({}: Props) {
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
   const [color, setColor] = useState<string | undefined>("blue");
+  // const [selectedPlaylist, setSelectedPlaylist] =
+  //   useState<any>();
   const [selectedPlaylist, setSelectedPlaylist] = useState<any>();
   const [track, setTrack] = useState<any>();
   const [recommendedSong, setRecommendedSong] = useState<any>();
@@ -84,8 +86,6 @@ function MyPlaylist({}: Props) {
     }
   }, [selectedPlaylist, pathname, spotifyApi]);
 
-
-
   const subtractDate = (addedDate: string) => {
     const daysBetween = new Date().getDate() - new Date(addedDate).getDate();
     return daysBetween;
@@ -97,18 +97,18 @@ function MyPlaylist({}: Props) {
     setIsPlaying(true);
     // spotifyApi.play({uris:[songInfo.track.uri]})
   };
-  
-  
 
-  const addSongToPlaylist =(albumid:string) =>{
-    
-    spotifyApi.addTracksToPlaylist(pathname,[albumid]).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }
-  // console.log(selectedPlaylist);
+  const addSongToPlaylist = (albumid: string) => {
+    spotifyApi
+      .addTracksToPlaylist(pathname, [albumid])
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
   return (
     <div
       className={
@@ -120,26 +120,7 @@ function MyPlaylist({}: Props) {
       }
     >
       <div>
-        {/* <div className="flex justify-between ">
-          <div className="flex flex-row p-5 space-x-5">
-            <div className="h-10 w-10 rounded-full bg-black flex items-center">
-              <IoIosArrowBack className="w-8 h-8  text-white" />
-            </div>
-            <div className="h-10 w-10 rounded-full bg-black flex items-center justify-center">
-              <IoIosArrowForward className="w-8 h-8  text-white" />
-            </div>
-          </div>
-          <div className="flex flex-row p-5 space-x-10 text-lg ">
-            <div className="text-white mt-1">Sign up</div>
-            <div className="w-36 h-10 bg-white rounded-full">
-              <div className="text-black flex justify-center items-center mt-1">
-                <Link href="/login">
-                  <a>Log in</a>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div> */}
+      
         <Head />
         <div className="flex">
           {selectedPlaylist && selectedPlaylist[0]?.images[0] === undefined ? (
@@ -161,15 +142,15 @@ function MyPlaylist({}: Props) {
 
           <div>
             <div className="text-white ml-5 mt-10">
-              {selectedPlaylist && selectedPlaylist[0].type}
+              {selectedPlaylist && selectedPlaylist[0]?.type}
             </div>
             <div className="text-white text-8xl ml-3 mt-5">
-              {selectedPlaylist && selectedPlaylist[0].name}
+              {selectedPlaylist && selectedPlaylist[0]?.name}
             </div>
 
             <div className="flex space-x-1 mt-20 ml-5">
               <div className="text-white">
-                {selectedPlaylist && selectedPlaylist[0].owner.display_name}
+                {selectedPlaylist && selectedPlaylist[0]?.owner.display_name}
               </div>
               {selectedPlaylist &&
                 selectedPlaylist[0]?.images[0] !== undefined && (

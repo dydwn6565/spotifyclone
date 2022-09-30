@@ -97,7 +97,7 @@ function Sidebar({}: Props) {
           {playlists &&
             playlists?.map((playlist,index) => (
               <div key={playlist.id+index}>
-                <Link href={`/playlist/${playlist.id}`}>
+                <Link href={`/playlist/my/${playlist.id}`}>
                   <div
                     key={playlist.id}
                     className="text-white pb-3 cursor-pointer"
