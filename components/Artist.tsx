@@ -4,7 +4,9 @@ type Props = {};
 
 const Artist = (props: Props) => {
   return (
-    <div className="flex flex-col items-center justify-center bg-neutral-900 h-screen ">
+    <div>
+
+    <div className="flex flex-col items-center justify-center bg-neutral-900 h-screen min-w-[800px] w-screen ">
       <BiUserVoice className="scale-875 fill-white" />
 
       <div className="text-white mt-16  text-3xl font-bold">
@@ -16,6 +18,7 @@ const Artist = (props: Props) => {
       <button className="bg-white w-36 h-12 rounded-3xl mt-10">
         Find Artist
       </button>
+    </div>
     </div>
   );
 };

@@ -13,10 +13,14 @@ export default function LibraryHead({}: Props) {
   return (
     <div>
       <div>
-        <div className="flex  bg-black">
-          <div className="flex flex-1 p-5 space-x-7  items-center ">
-            <IoIosArrowBack className="w-8 h-8  text-white" />
-            <IoIosArrowForward className="w-8 h-8  text-white" />
+        <div className="flex bg-neutral-900 just-between min-w-[700px] ">
+          <div className="flex flex-row p-5 space-x-5 ml-5">
+            <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
+              <IoIosArrowBack className="w-8 h-8 text-gray-400" />
+            </div>
+            <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
+              <IoIosArrowForward className="w-8 h-8  text-gray-400" />
+            </div>
 
             <div
               className={
@@ -26,7 +30,7 @@ export default function LibraryHead({}: Props) {
               }
             >
               <Link href={"/collection/playlists"}>
-                <div className="text-white pb-3 cursor-pointer">
+                <div className="text-white pb-3 cursor-pointer flex justify-center items-center">
                   <>
                     <a>Playlist</a>
                   </>
@@ -66,23 +70,22 @@ export default function LibraryHead({}: Props) {
             </div>
           </div>
           {session ? (
-            <div className='mr-10'>
-
+            <div className="mr-10 mt-5 relative top-0 right-0 lg:absolute">
               <VerifiedLogin />
             </div>
           ) : (
-          <div className="flex flex-row p-5 space-x-10 text-lg ">
-            <div className="text-white mt-1">Sign up</div>
-            <div className="w-36 h-10 bg-white rounded-full">
-              <div className="text-black flex justify-center items-center mt-1">
-                <Link href="/login">
-                  <a>Log in</a>
-                </Link>
+            <div className="flex flex-row p-5 space-x-10 text-lg ">
+              <div className="text-white mt-1">Sign up</div>
+              <div className="w-36 h-10 bg-white rounded-full">
+                <div className="text-black flex justify-center items-center mt-1">
+                  <Link href="/login">
+                    <a>Log in</a>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-                  )}
-         </div>
+          )}
+        </div>
       </div>
     </div>
   );

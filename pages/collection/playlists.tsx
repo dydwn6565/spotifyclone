@@ -1,25 +1,21 @@
-import React from 'react'
-import { useRecoilState } from 'recoil';
-import { playlistState } from '../../atoms/playlistAtom';
-import LibraryHead from '../../components/LibraryHead';
+import React from "react";
+
+import LibraryHead from "../../components/LibraryHead";
 import EmptyPlaylistsImage from "../../components/EmptyPlaylistsImage";
 
+import Sidebar from "../../components/Sidebar";
 
-import Sidebar from '../../components/Sidebar'
-import useSpotify from '../../hooks/useSpotify';
-
-type Props = {}
+type Props = {};
 
 function mylibrary({}: Props) {
-  
-  // const [playlist, setPlaylist] = useRecoilState(playlistState);
-  // console.log(playlist); 
   return (
     <div>
-      <div className="grid  grid-cols-6 h-full">
-        <Sidebar />
+      <div className="flex h-full">
+        <div>
+          <Sidebar />
+        </div>
 
-        <div className="col-span-5">
+        <div>
           <LibraryHead />
           <EmptyPlaylistsImage />
         </div>
@@ -28,4 +24,4 @@ function mylibrary({}: Props) {
   );
 }
 
-export default mylibrary
+export default mylibrary;

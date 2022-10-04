@@ -17,7 +17,7 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
   const resizeHanlder = () => {
     let filtedData = [];
     if (window.innerWidth >= 1900) {
-        console.log("hit")
+        
       recentlyPlayedList.map((album, index) => {
         index <= 6 && filtedData.push(album);
       });

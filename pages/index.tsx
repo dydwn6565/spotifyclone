@@ -13,14 +13,14 @@ export default function Home() {
     <>
       <div>
         <>
-          <div className="flex min-w-[1200px]">
+          <div className="flex ">
 
-            <div className="">
+            <div >
               <Sidebar />
             </div>
             
 
-            <div className="">
+            <div >
               <Main />
             </div>
 

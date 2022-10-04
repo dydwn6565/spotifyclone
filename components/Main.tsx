@@ -39,7 +39,7 @@ function Main({}: Props) {
   };
   return (
     <>
-      <div className=" bg-zinc-800 h-full w-screen min-w-[800px]">
+      <div className=" bg-zinc-800 h-full  min-w-[800px]">
         <Head color={"zinc"} />
         <div className="p-5">
           <title>Spotify</title>

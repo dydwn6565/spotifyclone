@@ -5,7 +5,7 @@ type Props = {}
 
 const Album = (props: Props) => {
   return (
-     <div className="flex flex-col items-center justify-center bg-neutral-900 h-screen ">
+     <div className="flex flex-col items-center justify-center bg-neutral-900 h-screen w-screen min-w-[800px]">
       <BiUserVoice className="scale-875 fill-white" />
       
       <div className="text-white mt-16  text-3xl font-bold">Follow your first Album</div>

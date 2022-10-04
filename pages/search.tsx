@@ -66,16 +66,18 @@ export default function Search() {
           searcheadArtists?.body?.artists?.items[0] !== undefined &&
           searcheadEpisodes?.body?.episodes?.items[0] !== undefined &&
           searcheadAlbums?.body?.albums?.items[0] !== undefined
-            ? "grid  grid-cols-6 bg-zinc-900 h-full"
+            ? "flex bg-zinc-900 h-full  "
             : // : searcheadAlbums?.body?.albums?.items[0] ===undefined
               // ? "grid  grid-cols-6 bg-zinc-900 h-screen"
-              "grid  grid-cols-6 bg-zinc-900 h-screen"
+              "flex bg-zinc-900 h-screen "
         }
       >
-        <Sidebar />
+        <div>
+          <Sidebar />
+        </div>
 
-        <div className="col-span-5">
-          <SearchHeader searchHanlder={searchHanlder} />
+        <div className="bg-zinc-900">
+          <SearchHeader searchHanlder={searchHanlder} color={"zinc-900"} />
           {search !== undefined &&
             search !== "" &&
             searcheadAlbums?.body?.albums.items[0] !== undefined && (

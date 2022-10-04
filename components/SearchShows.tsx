@@ -1,8 +1,45 @@
 import Image from "next/image";
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 type Props = { searcheadShow: any };
 const SearchShows = ({searcheadShow}: Props) => {
+    const hasWindow = typeof window !== "undefined";
+    const [filteredAlbumList, setFilteredAlbumList] = useState([]);
+    const [albumSize, setAlbumSize] = useState(5);
+    const resizeHanlder = () => {
+      let filtedData = [];
+      if (window.innerWidth >= 1380) {
+        searcheadShow.body.shows.items.map((artist, index) => {
+          index <= 3 && filtedData.push(artist);
+        });
+        setAlbumSize(4);
+      }
+      if (window.innerWidth < 1380 && window.innerWidth >= 1100) {
+        searcheadShow.body.shows.items.map((artist, index) => {
+          index <= 2 && filtedData.push(artist);
+        });
+        setAlbumSize(3);
+      }
+
+      if (window.innerWidth < 1100) {
+        searcheadShow.body.shows.items.map((artist, index) => {
+          index <= 1 && filtedData.push(artist);
+        });
+        setAlbumSize(2);
+      }
+
+      setFilteredAlbumList(filtedData);
+    };
+    useEffect(() => {
+      if (hasWindow && searcheadShow?.body !== undefined) {
+        console.log("hit");
+        window.addEventListener("resize", resizeHanlder);
+      }
+      return () => {
+        window.removeEventListener("resize", resizeHanlder);
+      };
+    }, [searcheadShow, hasWindow]);
+   console.log(filteredAlbumList);
   return (
     <div>
       <>
@@ -10,9 +47,8 @@ const SearchShows = ({searcheadShow}: Props) => {
           <div className="ml-10">
             <div className="text-3xl mt-2 text-white ">Shows</div>
             <div className="flex ">
-              {searcheadShow?.body?.shows.items.map((show) => (
+              {filteredAlbumList.map((show) => (
                 <div key={show.id}>
-                  
                   <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
                     <div className="mt-10">
                       <Image
