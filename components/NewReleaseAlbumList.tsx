@@ -7,7 +7,7 @@ interface Size {
   height: number;
 }
 
-const NewReleaseAlbumList = ( newReleaseAlbums : any) => {
+const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
   const hasWindow = typeof window !== "undefined";
   const [filteredAlbumList, setFilteredAlbumList] = useState([]);
   const [albumSize, setAlbumSize] = useState(5);
@@ -22,41 +22,41 @@ const NewReleaseAlbumList = ( newReleaseAlbums : any) => {
       setAlbumSize(6);
     }
     if (window.innerWidth < 1900 && window.innerWidth >= 1580) {
-      console.log(newReleaseAlbums);
+    //   console.log(newReleaseAlbums);
       newReleaseAlbums.albums.items.map((album, index) => {
         index <= 5 && filtedData.push(album);
       });
       setAlbumSize(6)
     }
     if (window.innerWidth < 1580 && window.innerWidth >= 1350) {
-      console.log(newReleaseAlbums);
+    //   console.log(newReleaseAlbums);
       newReleaseAlbums.albums.items.map((album, index) => {
         index <= 4 && filtedData.push(album);
       });
       setAlbumSize(5);
     }
      if (window.innerWidth < 1350 && window.innerWidth >= 1100) {
-       console.log(newReleaseAlbums);
+    //    console.log(newReleaseAlbums);
        newReleaseAlbums.albums.items.map((album, index) => {
          index <= 3 && filtedData.push(album);
        });
        setAlbumSize(4);
      }
        if (window.innerWidth < 1100 && window.innerWidth >= 1000) {
-       console.log(newReleaseAlbums);
+    //    console.log(newReleaseAlbums);
        newReleaseAlbums.albums.items.map((album, index) => {
          index <= 2 && filtedData.push(album);
        });
        setAlbumSize(3);
      }
        if (window.innerWidth < 1000) {
-         console.log(newReleaseAlbums);
+        //  console.log(newReleaseAlbums);
          newReleaseAlbums.albums.items.map((album, index) => {
            index <= 1 && filtedData.push(album);
          });
          setAlbumSize(2);
        }
-    console.log(filtedData);
+    // console.log(filtedData);
     setFilteredAlbumList(filtedData);
    
   };
@@ -92,7 +92,7 @@ const NewReleaseAlbumList = ( newReleaseAlbums : any) => {
   }, [newReleaseAlbums, hasWindow]);
   return (
     <div>
-      <>{console.log(filteredAlbumList)}</>
+      {/* <>{console.log(filteredAlbumList)}</> */}
       <h2 className="text-white text-2xl font-bold mt-5 mb-5">
         New Release Albums List
       </h2>
