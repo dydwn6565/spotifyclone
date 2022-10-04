@@ -41,8 +41,20 @@ function MyPlaylist({}: Props) {
   const [track, setTrack] = useState<any>();
   const [recommendedSong, setRecommendedSong] = useState<any>();
   const [searcheadAlbums, setSearchedAlbums] = useState<any>();
-  const num = 100;
+  const [addedSongToPlaylist, setAddedSongToPlaylist] = useState<string>();
+  const [search, setSearch] = useState<string | undefined>();
+  const num = 4;
+  
+  //  useEffect(() => {
+  //     // setSelectedPlaylist("");
+  //     // setTrack("");
+  //     // setRecommendedSong("");
+  //     // setSearchedAlbums("");
+  //     // console.log("hit")
+      
+  //  }, []);
   useEffect(() => {
+    
     const filterdPlayList = playlists?.filter((album) => {
       return album.id === pathname;
     });
@@ -54,20 +66,29 @@ function MyPlaylist({}: Props) {
     setColor(shuffle(colorList).pop());
   }, [pathname, playlists]);
 
+  
   useEffect(() => {
-    if (selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined) {
+    
+    if (selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined &&pathname) {
+      
       axios
-        .get(selectedPlaylist[0]?.tracks.href, {
-          headers: {
-            Authorization: `Bearer ${spotifyApi.getCredentials().accessToken}`,
-          },
-        })
+        .get(
+          `https://api.spotify.com/v1/playlists/${pathname}/tracks?offset=0&limit=100&locale=ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7`,
+          {
+            headers: {
+              Authorization: `Bearer ${
+                spotifyApi.getCredentials().accessToken
+              }`,
+            },
+          }
+        )
         .then((res) => {
           setTrack(res);
-
+          
           let albumIdList = [];
-          res.data.items.map((album,index) =>
-          index ==0 && albumIdList.push(album.track.artists[0].id)
+          res.data.items.map(
+            (album, index) =>
+              index == 0 && albumIdList.push(album.track.artists[0].id)
           );
 
           spotifyApi
@@ -85,10 +106,11 @@ function MyPlaylist({}: Props) {
           console.log(err);
         });
     }
-  }, [selectedPlaylist, pathname, spotifyApi]);
+  }, [selectedPlaylist, pathname, spotifyApi, addedSongToPlaylist]);
+
 
   const subtractDate = (addedDate: string) => {
-    const daysBetween = new Date(addedDate).getDate()- new Date().getDate()  ;
+    const daysBetween = new Date(addedDate).getDate() - new Date().getDate();
     return daysBetween;
   };
 
@@ -104,23 +126,28 @@ function MyPlaylist({}: Props) {
       .addTracksToPlaylist(pathname, [albumid])
       .then((res) => {
         console.log(res);
+        setAddedSongToPlaylist(albumid);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  // console.log(num.toFixed(1));
   
+  // console.log(recommendedSong?.body?.tracks);
   return (
     <>
-
       <div
         className={
-          selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined  &&
-      recommendedSong?.body?.tracks.length > num.toFixed(1)
+          selectedPlaylist &&
+          selectedPlaylist[0]?.images[0] !== undefined &&
+          recommendedSong?.body?.tracks.length > num.toFixed(1)
             ? "w-[calc(100vw-17.2rem)] h-full bg-gradient-to-b from-blue-500 to-black min-w-[780px]"
-            : searcheadAlbums?.body?.tracks?.items[0]
-            ? " h-screen w-[calc(100vw-17.2rem)] bg-slate-900 "
-            : " h-full w-[calc(100vw-17.2rem)] bg-slate-900 "
+            : selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined
+            ? "w-[calc(100vw-17.2rem)] h-screen bg-gradient-to-b from-blue-500 to-black min-w-[780px]"
+            : search === "" || search == undefined
+            ? " h-screen w-[calc(100vw-17.2rem)] bg-slate-900 min-w-[780px] "
+            : " h-full w-[calc(100vw-17.2rem)] bg-slate-900 min-w-[780px] "
         }
       >
         <div>
@@ -181,7 +208,7 @@ function MyPlaylist({}: Props) {
           <div>
             {selectedPlaylist &&
               selectedPlaylist[0]?.images[0] !== undefined &&
-              track?.data.items.map((song, index) => (
+              track?.data?.items.map((song, index) => (
                 <div key={song.track.id + index}>
                   <div
                     className="  ml-10 p-2 grid grid-cols-12 items-center "
@@ -229,7 +256,7 @@ function MyPlaylist({}: Props) {
           <div>
             {selectedPlaylist &&
             selectedPlaylist[0]?.images[0] !== undefined ? (
-              recommendedSong?.body.tracks.map((song, index) => (
+              recommendedSong?.body?.tracks.map((song, index) => (
                 <div key={song.album.id + index}>
                   <div className="  ml-10 p-2 grid grid-cols-11 items-center">
                     <div className="text-white flex -ml-2  col-span-4">
@@ -259,6 +286,8 @@ function MyPlaylist({}: Props) {
               ))
             ) : (
               <MyPlaylistSearch
+                search={search}
+                setSearch={setSearch}
                 searcheadAlbums={searcheadAlbums}
                 setSearchedAlbums={setSearchedAlbums}
                 pathname={pathname}

@@ -15,20 +15,25 @@ type Props = {
   searcheadAlbums: any;
   setSearchedAlbums: Dispatch<SetStateAction<any | undefined>>;
   pathname: string;
-  addSongToPlaylist: (albumid : string) =>void
-}
+  addSongToPlaylist: (albumid: string) => void;
+  search: any;
+  setSearch: Dispatch<SetStateAction<any | undefined>>;
+};
 
 function MyPlaylistSearch({
   setSearchedAlbums,
   searcheadAlbums,
   addSongToPlaylist,
+  search,
+  setSearch
 }: Props) {
   const spotifyApi = useSpotify();
-  const [search, setSearch] = useState<string | undefined>();
+  // const [search, setSearch] = useState<string | undefined>();
 
   useEffect(() => {
     if (search !== "" && search !== undefined) {
-      // debouncedSearchedAlbum();
+      
+      
       setSearchedAlbums("");
       spotifyApi
         .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
