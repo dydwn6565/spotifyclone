@@ -7,18 +7,21 @@ type Props = {}
 
 const myplaylistid = (props: Props) => {
   return (
-    <div>
+    
       <>
-        <div className="grid  grid-cols-6 h-full">
-          <Sidebar />
+        <div className="flex ">
+          <div>
 
-          <div className="col-span-5">
+          <Sidebar />
+          </div>
+
+          <div >
             <MyPlaylist />
           </div>
         </div>
         <Player />
       </>
-    </div>
+    
   );
 }
 

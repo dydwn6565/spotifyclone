@@ -28,9 +28,7 @@ function useGetRecentlyPlayedTrack() {
              newAlbum.push(album);
            }
          });
-        //  console.log("hit")
-        //  console.log(newAlbum);
-        //  return newAlbum
+        
          setRecentlyPlayedList(newAlbum);
        };
 return recentlyPlayedList;

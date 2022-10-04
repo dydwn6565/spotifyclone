@@ -14,18 +14,14 @@ export default function Home() {
       <div>
         <>
           <div className="flex ">
-
-            <div >
+            <div>
               <Sidebar />
             </div>
-            
 
-            <div >
+            <div>
               <Main />
             </div>
-
           </div>
-          
         </>
       </div>
     </>

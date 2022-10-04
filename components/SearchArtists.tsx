@@ -21,27 +21,7 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
       });
       setAlbumSize(3);
     }
-    // if (window.innerWidth < 1580 && window.innerWidth >= 1350) {
-    //   console.log(searcheadArtists);
-    //   searcheadArtists.map((album, index) => {
-    //     index <= 4 && filtedData.push(album);
-    //   });
-    //   setAlbumSize(5);
-    // }
-    // if (window.innerWidth < 1350 && window.innerWidth >= 1100) {
-    //   console.log(searcheadArtists);
-    //   searcheadArtists.map((album, index) => {
-    //     index <= 3 && filtedData.push(album);
-    //   });
-    //   setAlbumSize(4);
-    // }
-    // if (window.innerWidth < 1100 && window.innerWidth >= 1000) {
-    //   console.log(searcheadArtists);
-    //   searcheadArtists.map((album, index) => {
-    //     index <= 2 && filtedData.push(album);
-    //   });
-    //   setAlbumSize(3);
-    // }
+    
     if (window.innerWidth < 1100) {
       
       searcheadArtists.body.artists.items.map((artist, index) => {
@@ -61,7 +41,8 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
         window.removeEventListener("resize", resizeHanlder);
       };
     }, [searcheadArtists, hasWindow]);
-    
+
+  
   return (
     <>
       {filteredAlbumList && filteredAlbumList !== undefined && (

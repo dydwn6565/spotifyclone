@@ -13,7 +13,7 @@ export default function artists({}: Props) {
           <Sidebar />
         </div>
 
-        <div>
+        <div >
           <LibraryHead />
           <Artist />
         </div>
