@@ -5,13 +5,13 @@ import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsMusicNoteBeamed } from 'react-icons/bs';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
 import { useRecoilState } from 'recoil';
 import { currentTrackIdState, isPlayingState, selectedPlaylists } from '../atoms/playlistAtom';
 import useSpotify from '../hooks/useSpotify';
 import { millisToMinutesAndSeconds } from '../lib/millisToMinutesAndSeconds';
 import Head from './Head';
-import VerifiedLogin from './VerifiedLogin';
+
 
 type Props = {}
 
@@ -78,7 +78,7 @@ const Playlist = (props: Props) => {
             </div>
           <div className="text-white text-8xl ml-20 mt-40">{selectedPlaylist?.body?.items[0]?.artists[0]?.name}</div>
         </div> */}
-      <Head />
+      <Head color={"slate"}/>
       <div className=" h-screen bg-slate-800">
         <div className="flex">
           {selectedPlaylist &&

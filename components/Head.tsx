@@ -8,23 +8,28 @@ import VerifiedLogin from './VerifiedLogin';
 
 
 
-type Props = {}
+type Props = {
+  color: string
+}
 
-function Head({}: Props) {
-     const { data: session, status } = useSession();
-  
+function Head({ color }: Props) {
+  const { data: session, status } = useSession();
+
   return (
     <div>
-      <div className="flex justify-between bg-black">
-        <div className="flex flex-row p-5 space-x-5">
-          <IoIosArrowBack className="w-8 h-8  text-white" />
-          <IoIosArrowForward className="w-8 h-8  text-white" />
+      <div className={`flex justify-between bg-${color}`}>
+        <div className="flex flex-row p-5 space-x-5 ml-5">
+          <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
+            <IoIosArrowBack className="w-8 h-8 text-gray-400" />
+          </div>
+          <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
+            <IoIosArrowForward className="w-8 h-8  text-gray-400" />
+          </div>
         </div>
 
         <div className="flex flex-row p-5 space-x-10 text-lg ">
           {session ? (
-            <div className='mr-10'>
-
+            <div className="mr-10">
               <VerifiedLogin />
             </div>
           ) : (

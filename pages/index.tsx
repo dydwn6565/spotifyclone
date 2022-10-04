@@ -13,13 +13,19 @@ export default function Home() {
     <>
       <div>
         <>
-          <div className="grid  grid-cols-6 ">
-            <Sidebar />
+          <div className="flex min-w-[1200px]">
 
-            <div className="col-span-5">
+            <div className="">
+              <Sidebar />
+            </div>
+            
+
+            <div className="">
               <Main />
             </div>
+
           </div>
+          
         </>
       </div>
     </>

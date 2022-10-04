@@ -5,7 +5,7 @@ import { BsPlusSquare } from "react-icons/bs";
 import { VscLibrary } from "react-icons/vsc";
 import { BsSearch } from "react-icons/bs";
 import { GrHomeRounded } from "react-icons/gr";
-import { BiHeartSquare } from "react-icons/bi";
+
 import useSpotify from "../hooks/useSpotify";
 import { useSession } from "next-auth/react";
 import { useRecoilState } from "recoil";
@@ -18,7 +18,7 @@ function Sidebar({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useRecoilState(playlistState);
-  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+  
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -41,10 +41,10 @@ function Sidebar({}: Props) {
   }
 }
   return (
-    <div className="bg-black h-full ">
-      <div className="flex justify-start items-center mb-5 mt-5">
-        <RiSpotifyFill className="h-10 w-10 fill-slate-300 ml-8 " />
-        <span className="text-3xl text-white">Spotify</span>
+    <div className="bg-black h-full w-64 min-w-48">
+      <div className="flex justify-start items-center mb-5 ">
+        <RiSpotifyFill className="h-12 w-12 fill-slate-300 ml-6 mt-5 mr-2" />
+        <span className="text-3xl text-white font-bold mt-5">Spotify</span>
       </div>
       <div className="mx-10">
         <Link href={"/"}>

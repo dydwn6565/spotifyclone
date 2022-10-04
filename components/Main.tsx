@@ -7,10 +7,10 @@ import useGetNewReleaseAlbums from "../hooks/useGetNewReleaseAlbums";
 import useRecommendationAlbum from "../hooks/useGetPopularAlbum";
 import Head from "./Head";
 
-import useSpotify from "../hooks/useSpotify";
 import { useRecoilState } from "recoil";
 import { playlistState, selectedPlaylists } from "../atoms/playlistAtom";
-import Link from "next/link";
+
+import NewReleaseAlbumList from "./NewReleaseAlbumList";
 type Props = {};
 
 function Main({}: Props) {
@@ -36,8 +36,8 @@ function Main({}: Props) {
   };
   return (
     <>
-      <div className=" bg-zinc-800 h-full">
-        <Head />
+      <div className=" bg-zinc-800 h-full w-screen min-w-[800px]">
+        <Head color={"zinc"} />
         <div className="p-5">
           <title>Spotify</title>
           <h2 className="text-white text-2xl font-bold">
@@ -82,10 +82,11 @@ function Main({}: Props) {
                 </div>
               ))}
           </div>
-          <h2 className="text-white text-2xl font-bold mt-5 mb-5">
+          {/* <h2 className="text-white text-2xl font-bold mt-5 mb-5">
             New Release Albums List
-          </h2>
-          <div className="flex overflow-hidden hover:overflow-auto">
+          </h2> */}
+          <NewReleaseAlbumList newReleaseAlbums={newReleaseAlbums} />
+          {/* <div className="flex overflow-hidden hover:overflow-auto">
             {newReleaseAlbums &&
               newReleaseAlbums.albums?.items.map((album) => (
                 <div key={album.name}>
@@ -119,7 +120,8 @@ function Main({}: Props) {
                   </div>
                 </div>
               ))}
-          </div>
+          </div> */}
+
           <h2 className="text-white text-2xl font-bold mt-5 mb-5">
             recommendationAlbum List
           </h2>

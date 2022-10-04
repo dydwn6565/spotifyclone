@@ -121,7 +121,7 @@ function MyPlaylist({}: Props) {
     >
       <div>
       
-        <Head />
+        <Head color={"slate"}/>
         <div className="flex">
           {selectedPlaylist && selectedPlaylist[0]?.images[0] === undefined ? (
             <div className="h-72 w-72 bg-slate-700 ml-7 flex items-center justify-center mt-5">
