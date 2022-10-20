@@ -110,7 +110,7 @@ function MyPlaylist({}: Props) {
 
 
   const subtractDate = (addedDate: string) => {
-    const daysBetween = new Date(addedDate).getDate() - new Date().getDate();
+    const daysBetween = new Date().getDate() - new Date(addedDate).getDate(); ;
     return daysBetween;
   };
 
@@ -233,6 +233,7 @@ function MyPlaylist({}: Props) {
 
                     <div className="col-span-2 text-white ml-10">
                       {subtractDate(song.added_at)} days ago
+                      
                     </div>
                     <div className="text-white ml-20">
                       {millisToMinutesAndSeconds(song.track.duration_ms)}

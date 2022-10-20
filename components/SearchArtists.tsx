@@ -32,9 +32,15 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
 
     setFilteredAlbumList(filtedData);
   };
+
+  useEffect(()=>{
+    if(searcheadArtists?.body !== undefined){
+      resizeHanlder();
+    }
+  },[])
     useEffect(() => {
       if (hasWindow && searcheadArtists?.body !== undefined) {
-        console.log("hit");
+        
         window.addEventListener("resize", resizeHanlder);
       }
       return () => {

@@ -30,6 +30,11 @@ const SearchShows = ({searcheadShow}: Props) => {
 
       setFilteredAlbumList(filtedData);
     };
+    useEffect(()=>{
+      if(searcheadShow?.body !== undefined){
+        resizeHanlder();
+      }
+    },[])
     useEffect(() => {
       if (hasWindow && searcheadShow?.body !== undefined) {
         console.log("hit");

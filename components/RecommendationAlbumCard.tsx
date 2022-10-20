@@ -9,22 +9,24 @@ const RecommendationAlbumCard = ({ album, albumSize }: any) => {
     <div>
       <div>
         <div className="   items-center flex  flex-col mr-7 bg-zinc-900 p-5  ">
-          {/* <div className={ `h-${(window.innerWidth-550) / albumSize} w-${(window.innerHeight-350)/albumSize}  mt-5 `}> */}
+          
           <div
             style={{
               width: (window.innerWidth - 1050) / albumSize + "px",
               minWidth: "190px",
             }}
           >
+            <div className='ml-3'>
+
             <Image
-              // width={(window.innerWidth - 650) / albumSize + "px"}
-              // height={(window.innerHeight - 250) / albumSize + "px"}
+              
               width={"170px"}
               height={"170px"}
               src={album.album.images[1].url}
               alt={album.album.images[1].url}
             />
-            <div className="mt-8 mr-auto mb-8 ">
+            </div>
+            <div className="mt-8 ml-3 mb-8 ">
               {album.name.length > 10 ? (
                 <div className="text-white">
                   {album.name.slice(0, 10) + "...."}

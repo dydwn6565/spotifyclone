@@ -35,6 +35,12 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
 
      setFilteredAlbumList(filtedData);
    };
+
+   useEffect(()=>{
+    if(searcheadEpisodes?.body !== undefined){
+        resizeHanlder();
+    }
+   },[])
    useEffect(() => {
      if (hasWindow && searcheadEpisodes?.body !== undefined) {
        console.log("hit");

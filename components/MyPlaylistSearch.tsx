@@ -28,7 +28,7 @@ function MyPlaylistSearch({
   setSearch
 }: Props) {
   const spotifyApi = useSpotify();
-  // const [search, setSearch] = useState<string | undefined>();
+  
 
   useEffect(() => {
     if (search !== "" && search !== undefined) {
@@ -66,7 +66,7 @@ function MyPlaylistSearch({
   //   }, 500),
   //   []
   // );
-
+console.log(searcheadAlbums?.body?.tracks.items[0]);
   return (
     <div className="">
       <div className=" w-96 h-12 rounded-lg mt-5 ml-10 bg-slate-600 flex justify-even items-center ">
@@ -79,7 +79,7 @@ function MyPlaylistSearch({
           onChange={(e) => searchHanlder(e.target.value)}
         />
       </div>
-      {searcheadAlbums &&
+      {searcheadAlbums?.body?.tracks.items[0] !==undefined ?
         searcheadAlbums.body.tracks.items.map((song, index) => (
           <div key={song.album.id + index}>
             <div className=" grid grid-cols-10 items-center mt-5">
@@ -106,7 +106,7 @@ function MyPlaylistSearch({
               </div>
             </div>
           </div>
-        ))}
+        )):<><div className="h-128 bg-slate-900"></div></>}
     </div>
   );
 }
