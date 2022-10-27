@@ -10,7 +10,7 @@ export default async function login(req, res) {
       clientSecret: "280b7c09342d47ef9cc4b0b1727d6903",
     });
     try {
-      console.log("hit14 ");
+      
       const response = await spotifyApi.authorizationCodeGrant(code);
       
       res.json({
