@@ -10,14 +10,13 @@ import Main from "../components/Main";
 import { useSession } from "next-auth/react";
 
 export default function Home() {
-    const { data: session, status } = useSession();
-    console.log(useSession())
-    useEffect(()=>{
-      
-        if (status === "unauthenticated") {
-          window.location.href="/login"
-        }
-    })
+  const { data: session, status } = useSession();
+  console.log(useSession());
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      window.location.href = "/login";
+    }
+  });
 
   return (
     <>

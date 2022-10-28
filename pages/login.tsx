@@ -18,7 +18,6 @@ export default function Login({ providers }) {
   }, [session]);
   return (
     <>
-      {/* {session && <><div className="flex justify-center items-center mt-72"> */}
       <div className="flex justify-center items-center mt-72">
         <div>
           <Image

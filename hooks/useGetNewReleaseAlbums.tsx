@@ -23,7 +23,7 @@ function useGetNewReleaseAlbums() {
               return re.json();
             })
             .then((result) => {
-              // console.log(result);
+              
               setNewReleaseAlbums(result);
             });
         })

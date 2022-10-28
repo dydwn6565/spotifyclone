@@ -67,8 +67,8 @@ export default function Search() {
           searcheadEpisodes?.body?.episodes?.items[0] !== undefined &&
           searcheadAlbums?.body?.albums?.items[0] !== undefined
             ? "flex bg-zinc-900 h-full  "
-            : // : searcheadAlbums?.body?.albums?.items[0] ===undefined
-              // ? "grid  grid-cols-6 bg-zinc-900 h-screen"
+            : 
+            
               "flex bg-zinc-900 h-screen "
         }
       >
