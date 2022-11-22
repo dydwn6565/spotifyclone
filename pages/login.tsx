@@ -32,13 +32,16 @@ export default function Login({ providers }) {
             <>
               {Object.values(providers).map((provider: Provider) => (
                 <>
-                  <div className="text-4xl mb-10">{provider.id}</div>
+                  <div className="text-4xl mb-10 ">{provider.id}</div>
                   <div key={provider.name}>
-                    <button
+                    <button className="ml-10 mb-5"
                       onClick={() => signIn(provider.id, { callbackUrl: "/" })}
                     >
                       Login with {provider.name}
                     </button>
+                    
+                    <h5>Id : dydwn6565@naver.com</h5>
+                    <h5>password: guest123</h5>
                   </div>
                 </>
               ))}
