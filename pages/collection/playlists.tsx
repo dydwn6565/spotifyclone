@@ -10,7 +10,7 @@ type Props = {};
 function mylibrary({}: Props) {
   return (
     <div>
-      <div className="flex h-full">
+      <div className="flex ">
         <div>
           <Sidebar />
         </div>

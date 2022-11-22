@@ -11,7 +11,7 @@ function EmptyPlaylistsImage({}: Props) {
   const [playlist, setPlaylist] = useRecoilState(playlistState);
 
   return (
-    <div className=" bg-neutral-900 h-screen flex flex-wrap min-w-[800px]">
+    <div className=" bg-neutral-900 h-screen flex flex-wrap min-w-[800px] w-screen">
       <div >
         <div className="text-3xl ml-10  text-white mt-6 ">Playlists</div>
         <div className="h-72 w-128 bg-gradient-to-r from-blue-800 to-indigo-500 ml-10 rounded-lg mt-5">

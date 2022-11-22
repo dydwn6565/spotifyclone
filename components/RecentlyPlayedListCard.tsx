@@ -13,6 +13,7 @@ const RecentlyPlayedListCard = ({ album, albumSize }: any) => {
           style={{
             width: (window.innerWidth - 1050) / albumSize + "px",
             minWidth: "190px",
+            maxWidth:"190px"
           }}
         >
           <div className='ml-3'>
