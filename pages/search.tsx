@@ -20,21 +20,21 @@ export default function Search() {
   
 
   useEffect(() => {
-    console.log(search);
+    
     if (search !== undefined && search !== "") {
       
       spotifyApi.searchAlbums(search, { limit: 4, offset: 1 }).then((res) => {
         setSearchedAlbums(res);
       });
       spotifyApi.searchArtists(search, { limit: 4, offset: 1 }).then((res) => {
-        // console.log(res);
+        
         setSearchedArtists(res);
       });
       spotifyApi.searchEpisodes(search, { limit: 4, offset: 1 }).then((res) => {
         setSearchedEpisodes(res);
       });
       spotifyApi.searchShows(search, { limit: 4, offset: 1 }).then((res) => {
-        // console.log(res);
+        
         setSearchedShow(res);
       });
       

@@ -33,28 +33,28 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
       setAlbumSize(6);
     }
     if (window.innerWidth < 1880 && window.innerWidth >= 1610) {
-      console.log(recentlyPlayedList);
+      
       recentlyPlayedList.map((album, index) => {
         index <= 4 && filtedData.push(album);
       });
       setAlbumSize(5);
     }
     if (window.innerWidth < 1610 && window.innerWidth >= 1350) {
-      console.log(recentlyPlayedList);
+      
       recentlyPlayedList.map((album, index) => {
         index <= 3 && filtedData.push(album);
       });
       setAlbumSize(4);
     }
     if (window.innerWidth < 1350 && window.innerWidth >= 1000) {
-      console.log(recentlyPlayedList);
+      
       recentlyPlayedList.map((album, index) => {
         index <= 2 && filtedData.push(album);
       });
       setAlbumSize(3);
     }
     if (window.innerWidth < 1000) {
-      console.log(recentlyPlayedList);
+      
       recentlyPlayedList.map((album, index) => {
         index <= 1 && filtedData.push(album);
       });
@@ -78,7 +78,7 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
     setFilteredAlbumList([]);
    resizeHanlder()
   }, [recentlyPlayedList]);
-  // console.log(filteredAlbumList)
+  
   return (
     <>
       {filteredAlbumList && <h2 className="text-white text-2xl font-bold mt-5 mb-5">

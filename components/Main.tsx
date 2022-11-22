@@ -30,14 +30,14 @@ function Main({}: Props) {
     //   .then((res) => {
 
     //     setSelectedPlaylist(res.body);
-    //     console.log(res);
+    
     //   }).then((result)=>{
     window.location.href = `/playlist/${selectedAlbumid}`;
   };
    
   return (
     <>
-      <div className=" bg-zinc-800 h-full  min-w-[800px] w-[calc(100vw-17.2rem)]">
+      <div className=" bg-zinc-800 min-h-screen  min-w-screen w-[calc(100vw-250px)]">
         <Head color={"zinc"} />
         <div className="p-5">
           <title>Spotify</title>

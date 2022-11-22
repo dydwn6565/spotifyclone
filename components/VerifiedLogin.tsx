@@ -13,7 +13,7 @@ export default function VerifiedLogin() {
           <div className="h-10 w-10 bg-gray-700 rounded-full flex justify-center items-center">
             <AiOutlineUser className="fill-white" />
           </div>
-          <div className="text-white text-sm mr-2  ">{session?.user.name}</div>
+          <div className="text-white text-sm mr-3  ">{session?.user.name}</div>
         </div>
       </div>
       <div className=" h-10 w-10 bg-gray-700 rounded-full  flex justify-center items-center  lg:hidden">

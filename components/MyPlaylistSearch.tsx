@@ -57,7 +57,7 @@ function MyPlaylistSearch({
 
   // const debouncedSearchedAlbum = useCallback(
   //   debounce (() => {
-  //     console.log(search)
+  
   //      spotifyApi
   //        .search(search, ["track", "playlist"], { limit: 10, offset: 1 })
   //        .then((res) => {
@@ -66,7 +66,7 @@ function MyPlaylistSearch({
   //   }, 500),
   //   []
   // );
-console.log(searcheadAlbums?.body?.tracks.items[0]);
+
   return (
     <div className="">
       <div className=" w-96 h-12 rounded-lg mt-5 ml-10 bg-slate-600 flex justify-even items-center ">

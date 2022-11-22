@@ -53,7 +53,7 @@ function Player({}: Props) {
       setVloume(50);
     }
   }, [currentTrackIdState, spotifyApi, session, currentTrackId]);
-  console.log(songInfo);
+  
 
   // useEffect(() => {
   //   if (volume > 10 && volume < 100) {

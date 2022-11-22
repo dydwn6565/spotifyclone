@@ -50,7 +50,7 @@ function MyPlaylist({}: Props) {
   //     // setTrack("");
   //     // setRecommendedSong("");
   //     // setSearchedAlbums("");
-  //     // console.log("hit")
+  
       
   //  }, []);
   useEffect(() => {
@@ -125,30 +125,23 @@ function MyPlaylist({}: Props) {
     spotifyApi
       .addTracksToPlaylist(pathname, [albumid])
       .then((res) => {
-        console.log(res);
+        
         setAddedSongToPlaylist(albumid);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  // console.log(num.toFixed(1));
   
-  // console.log(recommendedSong?.body?.tracks);
+  
   return (
     <>
       <div
-        className={
-          selectedPlaylist &&
-          selectedPlaylist[0]?.images[0] !== undefined &&
-          recommendedSong?.body?.tracks.length > num.toFixed(1)
-            ? "w-[calc(100vw-17.2rem)] h-full bg-gradient-to-b from-blue-500 to-black min-w-[780px]"
-            : selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined
-            ? "w-[calc(100vw-17.2rem)] h-screen bg-gradient-to-b from-blue-500 to-black min-w-[780px]"
-            : search === "" || search == undefined
-            ? " h-screen w-[calc(100vw-17.2rem)] bg-slate-900 min-w-[780px] "
-            : " h-full w-[calc(100vw-17.2rem)] bg-slate-900 min-w-[780px] "
-        }
+      
+      className={ selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined &&
+        recommendedSong?.body?.tracks.length > num.toFixed(1)
+         ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black" :"h-[calc(100vh+100px)] bg-slate-900 w-screen"}
+     
       >
         <div>
           <Head color={"slate"} />

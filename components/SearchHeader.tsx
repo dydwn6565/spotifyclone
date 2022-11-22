@@ -14,7 +14,7 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
   // const hasWindow = typeof window !== "undefined";
   //   useEffect(() => {
   //     if (hasWindow && recentlyPlayedList !== undefined) {
-  //       console.log("hit");
+  
   //       window.addEventListener("resize", resizeHanlder);
   //     }
   //     return () => {

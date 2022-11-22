@@ -7,7 +7,7 @@ export default function useAuth(code:string |string[]){
     
 
     useEffect(()=>{
-        console.log(code)
+        
         axios.post('/api/login',{
             code,
         }).then(res=>{
@@ -24,7 +24,7 @@ export default function useAuth(code:string |string[]){
         axios.post('/api/refresh',{
                 refreshToken
         }).then(data=>{
-            console.log(data)
+            
             // setAccessToken(data.data.accessToken)
             // setExpiresIn(data.data.expiresIn);
         }).catch(()=>{

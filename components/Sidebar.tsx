@@ -33,7 +33,7 @@ function Sidebar({}: Props) {
       spotifyApi
         .createPlaylist(`My playlist #${playlists.length + 1}`)
         .then((res) => {
-          console.log(res);
+          
           setCreatePlaylist(playlists.length + 1);
         })
         .catch((err) => {
@@ -43,7 +43,7 @@ function Sidebar({}: Props) {
   };
 
   const linktoPlaylist =(playlistIdState:string) =>{
-    console.log(playlistIdState)
+    
       window.location.href = `/playlist/my/${playlistIdState}`;
   }
   return (

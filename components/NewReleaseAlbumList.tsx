@@ -76,7 +76,7 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
     }, [newReleaseAlbums]);
   return (
     <div>
-      {/* <>{console.log(filteredAlbumList)}</> */}
+      
       {newReleaseAlbums && (
         <h2 className="text-white text-2xl font-bold mt-5 mb-5">
           New Release Albums List

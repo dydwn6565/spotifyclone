@@ -15,7 +15,7 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
       setAlbumSize(4);
     }
     if (window.innerWidth < 1380 && window.innerWidth >= 1100) {
-      // console.log(searcheadArtists);
+      
       searcheadArtists.body.artists.items.map((artist, index) => {
         index <= 2 && filtedData.push(artist);
       });

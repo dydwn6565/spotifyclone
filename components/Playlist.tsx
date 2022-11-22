@@ -33,7 +33,7 @@ const Playlist = (props: Props) => {
     
           setSelectedPlaylist(res);
           setTrack(res.body.tracks.items);
-          console.log(res);
+          
         }).catch((error)=>{
 
         })
@@ -46,7 +46,7 @@ const Playlist = (props: Props) => {
     setIsPlaying(true);
     // spotifyApi.play({uris:[songInfo.track.uri]})
   };
-  console.log(selectedPlaylist);
+  
   return (
     <div>
       {/* <div className=" bg-gradient-to-r from-lime-800 to-orange-600 h-128 w-full">

@@ -37,14 +37,14 @@ const SearchShows = ({searcheadShow}: Props) => {
     },[])
     useEffect(() => {
       if (hasWindow && searcheadShow?.body !== undefined) {
-        console.log("hit");
+        
         window.addEventListener("resize", resizeHanlder);
       }
       return () => {
         window.removeEventListener("resize", resizeHanlder);
       };
     }, [searcheadShow, hasWindow]);
-   console.log(filteredAlbumList);
+   
   return (
     <div>
       <>
