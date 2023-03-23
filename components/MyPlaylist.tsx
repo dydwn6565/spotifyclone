@@ -127,6 +127,7 @@ function MyPlaylist({}: Props) {
       .then((res) => {
         
         setAddedSongToPlaylist(albumid);
+        alert("Song is added")
       })
       .catch((err) => {
         console.log(err);

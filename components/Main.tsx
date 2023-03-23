@@ -40,7 +40,7 @@ function Main({}: Props) {
       <div className=" bg-zinc-800 min-h-screen  min-w-screen w-[calc(100vw-250px)]">
         <Head color={"zinc"} />
         <div className="p-5">
-          <title>Spotify</title>
+          <title>Music Land</title>
 
           <RecentlyPlayedList recentlyPlayedList={recentlyPlayedList} />
 

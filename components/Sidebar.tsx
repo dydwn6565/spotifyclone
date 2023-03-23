@@ -12,6 +12,7 @@ import { useRecoilState } from "recoil";
 import { RiSpotifyFill } from "react-icons/ri";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
 import Link from "next/link";
+
 type Props = {};
 
 function Sidebar({}: Props) {
@@ -49,10 +50,14 @@ function Sidebar({}: Props) {
   return (
     <div className="bg-black h-full w-64 min-w-48">
       <div className="flex justify-start items-center mb-5 ">
-        <RiSpotifyFill className="h-12 w-12 fill-slate-300 ml-6 mt-5 mr-2" />
+        <div className="h-12 w-12 fill-slate-300  mt-6 mr-2" >
+
+        <Image   src="/logo192.png" width={50} height={50} />
+        </div>
+        {/* <RiSpotifyFill className="h-12 w-12 fill-slate-300 ml-6 mt-5 mr-2" /> */}
         <Link href={"/"}>
           <span className="text-3xl text-white font-bold mt-5 cursor-pointer">
-            <a>Spotify</a>
+            <a>Music Land</a>
           </span>
         </Link>
       </div>
