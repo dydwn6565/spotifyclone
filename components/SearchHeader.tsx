@@ -25,12 +25,7 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
     <div className={`flex justify-between  bg-${color} min-w-[700px] `}>
       <div className="flex">
         <div className="flex flex-row p-5 space-x-5 ml-5">
-          <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
-            <IoIosArrowBack className="w-8 h-8 text-gray-400" />
-          </div>
-          <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
-            <IoIosArrowForward className="w-8 h-8  text-gray-400" />
-          </div>
+         
         </div>
         <div className=" w-96 h-12 rounded-full mt-3  bg-white flex justify-even items-center">
           <div className="ml-5 scale-150">

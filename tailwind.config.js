@@ -26,7 +26,8 @@ module.exports = {
 
       xlm: { max: "1279px" },
       // => @media (max-width: 1279px) { ... }
-
+      tenfornine: { max: "1049px" },
+      // => @media (max-width: 1049px) { ... }
       lgm: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
 
@@ -41,12 +42,14 @@ module.exports = {
         128: "32rem",
         256: "64rem",
         320: "80rem",
+        781: "781px",
       },
       height: {
         128: "32rem",
         196: "48rem",
         256: "64rem",
         320: "80rem",
+        1290: "1290px",
       },
       scale: {
         875: "8.75",

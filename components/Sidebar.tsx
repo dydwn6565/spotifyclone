@@ -87,7 +87,7 @@ function Sidebar({}: Props) {
             </>
           </div>
         </Link>
-        <Link href={"/collection/playlists"}>
+        {/* <Link href={"/collection/playlists"}>
           <div className="text-white pb-3 cursor-pointer">
             <>
               <a>
@@ -98,10 +98,10 @@ function Sidebar({}: Props) {
               </a>
             </>
           </div>
-        </Link>
+        </Link> */}
 
         <div>
-          <div className="flex justify-start items-center  pb-5 cursor-pointer">
+          <div className="flex justify-start items-center  pb-5 cursor-pointer mt-5">
             <BsPlusSquare className="scale-150 fill-white" />
             <div className="pl-6 text-white" onClick={createPlayList}>
               Make the playlist

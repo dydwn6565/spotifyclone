@@ -15,12 +15,7 @@ export default function LibraryHead({}: Props) {
       <div>
         <div className="flex bg-neutral-900 just-between min-w-[700px] ">
           <div className="flex flex-row p-5 space-x-5 ml-5">
-            <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
-              <IoIosArrowBack className="w-8 h-8 text-gray-400" />
-            </div>
-            <div className="h-9 w-9 rounded-full bg-black flex items-center justify-center">
-              <IoIosArrowForward className="w-8 h-8  text-gray-400" />
-            </div>
+            
 
             <div
               className={
