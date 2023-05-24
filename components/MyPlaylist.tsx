@@ -141,7 +141,7 @@ function MyPlaylist({}: Props) {
       
       className={ selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined &&
         recommendedSong?.body?.tracks.length > num.toFixed(1)
-         ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black" :"h-[calc(1200px+100px)] bg-slate-900 w-screen"}
+         ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black" :"h-[calc(1200px+100px)] bg-slate-900 w-[calc(100vw-273px)]"}
      
       >
         <div>
