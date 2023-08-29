@@ -12,7 +12,7 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
   const [filteredAlbumList, setFilteredAlbumList] = useState([]);
   const [albumSize, setAlbumSize] = useState(5);
   const resizeHanlder = () => {
-    
+    console.log
     let filtedData = [];
     if (window.innerWidth >= 2000) {
       
@@ -28,35 +28,48 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
       });
       setAlbumSize(6)
     }
-    if (window.innerWidth < 1880 && window.innerWidth >= 1610) {
+    if (window.innerWidth < 1880 && window.innerWidth >= 1622) {
     
       newReleaseAlbums.albums?.items.map((album, index) => {
-        index <= 4 && filtedData.push(album);
+        index <= 5 && filtedData.push(album);
       });
       setAlbumSize(5);
     }
-     if (window.innerWidth < 1610 && window.innerWidth >= 1350) {
+     if (window.innerWidth < 1622 && window.innerWidth >= 1403) {
+    
+       newReleaseAlbums.albums?.items.map((album, index) => {
+         index <= 4 && filtedData.push(album);
+       });
+       setAlbumSize(4);
+     }
+       if (window.innerWidth < 1403 && window.innerWidth >= 1186) {
     
        newReleaseAlbums.albums?.items.map((album, index) => {
          index <= 3 && filtedData.push(album);
        });
-       setAlbumSize(4);
+       setAlbumSize(3);
      }
-       if (window.innerWidth < 1350 && window.innerWidth >= 1000) {
+       if (window.innerWidth < 1186 && window.innerWidth >= 950) {
     
        newReleaseAlbums.albums?.items.map((album, index) => {
          index <= 2 && filtedData.push(album);
        });
-       setAlbumSize(3);
+       setAlbumSize(2);
      }
-       if (window.innerWidth < 1000) {
+       if (window.innerWidth < 950 && window.innerWidth >= 900) {
         
          newReleaseAlbums.albums?.items.map((album, index) => {
            index <= 1 && filtedData.push(album);
          });
-         setAlbumSize(2);
+         setAlbumSize(1);
        }
-    
+      if (window.innerWidth < 900) {
+        
+         newReleaseAlbums.albums?.items.map((album, index) => {
+           index <= 1 && filtedData.push(album);
+         });
+         setAlbumSize(1);
+       }
     setFilteredAlbumList(filtedData);
    
   };
@@ -83,7 +96,7 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
         </h2>
       )}
 
-      <div className="flex  flex-wrap w-full min-w-[800px] ">
+      <div className="flex  flex-wrap w-full  ">
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
             <div key={album?.name + index}>

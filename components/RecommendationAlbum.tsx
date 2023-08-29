@@ -23,33 +23,47 @@ const RecommendationAlbum = ({ recommendationAlbum }: any) => {
       });
       setAlbumSize(6);
     }
-    if (window.innerWidth < 1880 && window.innerWidth >= 1610) {
+    if (window.innerWidth < 1880 && window.innerWidth >= 1622) {
       
       recommendationAlbum.map((album, index) => {
         index <= 4 && filtedData.push(album);
       });
       setAlbumSize(5);
     }
-    if (window.innerWidth < 1610 && window.innerWidth >= 1350) {
+    if (window.innerWidth < 1622 && window.innerWidth >= 1403) {
       
       recommendationAlbum.map((album, index) => {
-        index <= 3 && filtedData.push(album);
+        index <= 4 && filtedData.push(album);
       });
       setAlbumSize(4);
     }
-    if (window.innerWidth < 1350 && window.innerWidth >= 1000) {
+     if (window.innerWidth < 1403 && window.innerWidth >= 1186) {
+    
+       recommendationAlbum.map((album, index) => {
+         index <= 3 && filtedData.push(album);
+       });
+       setAlbumSize(3);
+     }
+    if (window.innerWidth < 1186 && window.innerWidth >= 950) {
       
       recommendationAlbum.map((album, index) => {
         index <= 2 && filtedData.push(album);
       });
-      setAlbumSize(3);
+      setAlbumSize(2);
     }
-    if (window.innerWidth < 1000) {
+     if (window.innerWidth < 950 && window.innerWidth >= 900) {
       
       recommendationAlbum.map((album, index) => {
         index <= 1 && filtedData.push(album);
       });
-      setAlbumSize(2);
+      setAlbumSize(1);
+    }
+    if (window.innerWidth < 900) {
+      
+      recommendationAlbum.map((album, index) => {
+        index <= 1 && filtedData.push(album);
+      });
+      setAlbumSize(1);
     }
 
     setFilteredAlbumList(filtedData);

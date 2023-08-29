@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 
 import { BsPlusSquare } from "react-icons/bs";
 import { VscLibrary } from "react-icons/vsc";
@@ -12,6 +12,8 @@ import { useRecoilState } from "recoil";
 import { RiSpotifyFill } from "react-icons/ri";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
 import Link from "next/link";
+import useDebounce from "../hooks/useDebounce";
+import { debounce } from "lodash";
 
 type Props = {};
 
@@ -19,7 +21,11 @@ function Sidebar({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useRecoilState(playlistState);
-  const [createPlaylist,setCreatePlaylist] = useState();
+  const [createPlaylist, setCreatePlaylist] = useState();
+  const [clickedPlaylist, setClickedPlaylist] = useState("");
+  const [ addPlaylist, setAddPlaylist] = useState(false);
+  const buttonRef = useRef(null);
+  // const debounceVal = useDebounce(playlists.length);
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then((data) => {
@@ -27,14 +33,19 @@ function Sidebar({}: Props) {
       });
     }
   }, [session, spotifyApi, createPlaylist]);
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  }, [clickedPlaylist]);
 
   const createPlayList = () => {
-    
+    console.log(playlists);
+    console.log(spotifyApi);
     if (spotifyApi) {
       spotifyApi
         .createPlaylist(`My playlist #${playlists.length + 1}`)
         .then((res) => {
-          
           setCreatePlaylist(playlists.length + 1);
         })
         .catch((err) => {
@@ -42,17 +53,64 @@ function Sidebar({}: Props) {
         });
     }
   };
+ const debouncedChangeHandler = useCallback(
+    debounce(createPlayList, 200)
+  , []);
+  const linktoPlaylist = (
+    e: React.MouseEvent<HTMLDivElement>,
+    playlistIdState: string
+  ) => {
+    e.preventDefault();
+    window.location.href = `/playlist/my/${playlistIdState}`;
+  };
 
-  const linktoPlaylist =(playlistIdState:string) =>{
+  const extendPlaylist = (
+    e: React.MouseEvent<HTMLDivElement>,
+    playlistId: string
+  ) => {
+    e.preventDefault();
+   
+    setClickedPlaylist(playlistId);
     
-      window.location.href = `/playlist/my/${playlistIdState}`;
+  };
+
+  const deletePlaylist = async (
+    e: React.MouseEvent<HTMLDivElement>,
+    playlistId: string
+  ) => {
+    e.preventDefault();
+    console.log(spotifyApi);
+    // window.location.href="/";
+    // alert("ht");
+    try {
+      if (spotifyApi) {
+        spotifyApi
+          .unfollowPlaylist(playlistId)
+          .then((res) => {
+            console.log(res);
+            window.location.href = "/";
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  function showAddPlaylist() {
+    setAddPlaylist(true)
+  }
+  function onblurDeletePlaylist() {
+    console.log("onblur");
+     setClickedPlaylist("");
   }
   return (
     <div className="bg-black h-full w-64 min-w-48">
       <div className="flex justify-start items-center mb-5 ">
-        <div className="h-12 w-12 fill-slate-300  mt-6 mr-2" >
-
-        <Image   src="/logo192.png" width={50} height={50} />
+        <div className="h-12 w-12 fill-slate-300  mt-6 mr-2">
+          <Image src="/logo192.png" width={50} height={50} />
         </div>
         {/* <RiSpotifyFill className="h-12 w-12 fill-slate-300 ml-6 mt-5 mr-2" /> */}
         <Link href={"/"}>
@@ -103,10 +161,17 @@ function Sidebar({}: Props) {
         <div>
           <div className="flex justify-start items-center  pb-5 cursor-pointer mt-5">
             <BsPlusSquare className="scale-150 fill-white" />
-            <div className="pl-6 text-white" onClick={createPlayList}>
-              Make the playlist
+            <div className="pl-6 text-white" onClick={showAddPlaylist} >
+              Make the playlist 
             </div>
+            
           </div>
+          {addPlaylist && <div className="absoulte w-40 h-15 bg-white cursor-point z-40 mr-15">
+
+             <div onClick={debouncedChangeHandler}>Add Playlist</div>
+             
+            </div>}
+          
         </div>
 
         <hr className="my-5  w-48 h-px bg-gray-100  border-0  dark:bg-gray-700" />
@@ -125,11 +190,32 @@ function Sidebar({}: Props) {
                   </div>
                 </Link> */}
                 <div
-                  className="text-white pb-3 cursor-pointer"
-                  onClick={() => linktoPlaylist(playlist.id)}
+                  className="text-white pb-3 cursor-pointer z-20"
+                  onClick={(e) => linktoPlaylist(e, playlist.id)}
+                  onContextMenu={(e) => extendPlaylist(e, playlist.id)}
                 >
                   {playlist.name}
                 </div>
+
+                {clickedPlaylist == playlist.id ? (
+                  <div
+                    ref={buttonRef}
+                    className="border-4 border-white-500/100 m-1 absolute ml-96 z-50 w-30 h-20 bg-white cursor-default hover:bg-white text-black"
+                    onClick={(e) => {
+                      deletePlaylist(e, playlist.id);
+                    }}
+                    // onFocus={(e) => {
+                    //   deletePlaylist(e, playlist.id);
+                    // }}
+                    
+                    onBlur={onblurDeletePlaylist}
+                    tabIndex={0}
+                  >
+                    Delete playlist
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             ))}
         </div>

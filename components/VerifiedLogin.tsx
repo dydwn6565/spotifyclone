@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { useSession,signOut } from 'next-auth/react';
 import React,{useState} from 'react'
 import { AiOutlineUser } from "react-icons/ai";
 import Logout from './Logout';
@@ -8,7 +8,11 @@ export default function VerifiedLogin() {
       const { data: session, status } = useSession();
       const [logout, setLogout] = useState(false);
       const logoutHandler = ()=>{
-          console.log("hit")
+          try{
+              signOut();
+          }catch(error){
+            alert(error);
+          }
           
       }
 
@@ -20,7 +24,8 @@ export default function VerifiedLogin() {
           <div className="h-10 w-10 bg-gray-700 rounded-full flex justify-center items-center">
             <AiOutlineUser className="fill-white" />
           </div>
-          <div className="text-white text-sm mr-3" onClick={logoutHandler}>{session?.user.name}</div>
+          
+          <div className="text-white text-sm mr-5 cursor-pointer" onClick={logoutHandler}>Sign out</div>
         </div>
       </div>
       <div className=" h-10 w-10 bg-gray-700 rounded-full  flex justify-center items-center  lg:hidden">

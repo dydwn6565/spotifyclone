@@ -37,7 +37,7 @@ function Main({}: Props) {
    
   return (
     <>
-      <div className=" bg-zinc-800 min-h-screen  min-w-screen w-[calc(100vw-273px)] lgm:w-full">
+      <div className=" bg-zinc-800 min-h-screen  min-w-screen w-[calc(100vw-273px)] ">
         <Head color={"zinc"} />
         <div className="p-5">
           <title>Music Land</title>

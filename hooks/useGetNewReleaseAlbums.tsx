@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import useSpotify from "./useSpotify";
 
 function useGetNewReleaseAlbums() {
