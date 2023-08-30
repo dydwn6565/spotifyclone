@@ -70,8 +70,8 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
     <div>
       <>
         {searcheadEpisodes && searcheadEpisodes !== undefined && (
-          <div className="ml-10">
-            <div className="text-3xl mt-4 text-white mdm:flex mdm:justify-center ">Episodes</div>
+          <div className="ml-10 mdm:ml-0">
+            <div className="text-3xl my-5 text-white mdm:flex mdm:justify-center sms:text-[5vw]">Episodes</div>
             <div className="flex mdm:justify-center mdm:hidden">
               {filteredAlbumList &&
                 filteredAlbumList.map((episode) => (
@@ -109,7 +109,7 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
                 ))}
             </div>
             
-            <div className="flex mdm:justify-center hidden mdm:block">
+            <div className="mdm:flex mdm:justify-center hidden mdm:block">
               
             <Splide
               aria-label="My Favorite Images"
@@ -135,8 +135,8 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
                 filteredAlbumList.map((episode) => (
                   <SplideSlide>
                   <div key={episode.id}>
-                    <div className="w-48 h-80 bg-black rounded-2xl flex flex-col items-center mr-10 mt-10 rounded-2xl sms:w-[125px] sms:h-48 smxs:w-[95px] smxs:h-36">
-                      <div className="mt-10 mdm:w-[120px] mdm:h-[120px] sms:w-[17vw] sms:h-[17vw] sms:-mt-5 ">
+                    <div className="w-48 h-80 bg-black rounded-2xl flex flex-col items-center mr-10 rounded-2xl sms:w-[125px] sms:h-48 smxs:w-[95px] smxs:h-36">
+                      <div className="mt-10 mdm:w-[120px] mdm:h-[120px] sms:w-[17vw] sms:h-[17vw] sms:-mt-[-14px] ">
                         <Image
                           width={"160px"}
                           height={"160px"}
@@ -148,20 +148,23 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
                           layout="responsive" 
                         />
                       </div>
+                      <div className='sms:my-3 sms:flex sms:flex-col sms:items-center sms:justify-center '>
+
                       {episode.name.length > 10 ? (
-                        <div className="text-white  sms:text-[13px]">
+                        <div className="text-white  sms:text-[13px] sms:ml-1 smxs:text-[10px]">
                           {episode.name.slice(0, 20) + "..."}
                         </div>
                       ) : (
-                        <div className="text-white sms:text-[13px]">{episode.name}</div>
+                        <div className="text-white sms:text-[13px] smxs:text-[10px]">{episode.name}</div>
                       )}
                       <div className="flex">
-                        <div className="text-white text-sm mr-2 sms:text-[12px]">
+                        <div className="text-white text-sm mr-2 sms:text-[12px] smxs:text-[10px] smxs:mr-0">
                           {episode.release_date}
                         </div>
-                        <div className="text-white text-sm sms:text-[12px]">
+                        <div className="text-white text-sm sms:text-[12px] smxs:hidden">
                           {convertmsToMinutes(episode.duration_ms)}
                         </div>
+                      </div>
                       </div>
                     </div>
                   </div>

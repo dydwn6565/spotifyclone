@@ -27,8 +27,8 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
         <div className="flex flex-row p-5 space-x-5 ml-5">
          
         </div>
-        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto ">
-          <div className="ml-5 scale-150">
+        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto mdm:h-10 mdm:w-40 mdm:ml-0 mdm:mt-4">
+          <div className="ml-5 scale-150 mdm:scale-100">
             <BsSearch />
           </div>
           <input

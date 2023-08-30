@@ -69,7 +69,7 @@ export default function Search() {
             ? "flex bg-zinc-900 h-full  mdm:justify-center"
             : 
             
-              "flex bg-zinc-900 h-screen "
+              "flex bg-zinc-900 h-screen mdm:justify-center"
         }
       >
         <div className="mdm:hidden">

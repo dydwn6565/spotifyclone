@@ -12,7 +12,7 @@ function SearchTopResult({ searcheadAlbums }: Props) {
             <div className=" mt-5 text-2xl  text-white sms:mt-0 ">
               <div className="flex mdm:justify-center sms:text-[5vw] ml-10  sms:ml-0">Top Result</div>
               <div className="flex mdm:justify-center">
-              <div className="w-96 h-72 bg-zinc-800  mt-5 sms:w-[60vw] sms:h-[50vw] sms:mt-0 ">
+              <div className="w-96 h-72 bg-zinc-800 ml-10 mt-5 sms:w-[60vw] sms:h-[50vw] sms:mt-0 mdm:ml-0 ">
                 <div className="ml-10 mt-10 absolute">
                   <div className="rounded-full sms:w-[20vw] sms:h-[25vw] ">
                     <Image
