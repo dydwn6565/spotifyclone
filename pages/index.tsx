@@ -23,12 +23,12 @@ export default function Home() {
       {session && (
         <div>
           <>
-            <div className="flex ">
-              <div>
+            <div className="flex  mdm: justify-center w-screen">
+              <div className="flex-2 mdm:hidden ">
                 <Sidebar />
               </div>
 
-              <div>
+              <div className="flex-7 mdm: w-screen">
                 <Main />
               </div>
             </div>

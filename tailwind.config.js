@@ -31,7 +31,7 @@ module.exports = {
       lgm: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
 
-      mdm: { max: "767px" },
+      mdm: { max: "730px" },
       // => @media (max-width: 767px) { ... }
 
       smm: { max: "639px" },
@@ -53,6 +53,11 @@ module.exports = {
       },
       scale: {
         875: "8.75",
+        125: "1.25",
+        225: "2.25",
+      },
+      spacing: {
+        unset: "unset",
       },
     },
   },

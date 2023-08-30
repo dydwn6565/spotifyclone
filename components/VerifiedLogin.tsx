@@ -28,8 +28,8 @@ export default function VerifiedLogin() {
           <div className="text-white text-sm mr-5 cursor-pointer" onClick={logoutHandler}>Sign out</div>
         </div>
       </div>
-      <div className=" h-10 w-10 bg-gray-700 rounded-full  flex justify-center items-center  lg:hidden">
-        <AiOutlineUser className="fill-white" />
+      <div className=" h-12 w-20 bg-gray-700 rounded-full  flex justify-center items-center -mt-2 lg:hidden">
+          <div className="text-white text-sm  cursor-pointer " onClick={logoutHandler}>Sign out</div>
       </div>
     </>
   );

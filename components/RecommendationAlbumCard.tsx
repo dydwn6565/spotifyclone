@@ -12,7 +12,7 @@ const RecommendationAlbumCard = ({ album, albumSize }: any) => {
           
           <div
             style={{
-             width: (window.innerWidth - 890) / albumSize + "px",
+             width: (window.innerWidth - 920) / albumSize + "px",
             // width:"10vw",
             // height:"15vw",
             minWidth: "150px",
@@ -31,7 +31,7 @@ const RecommendationAlbumCard = ({ album, albumSize }: any) => {
               alt={album.album.images[1].url}
               layout="responsive" 
             />
-            </div>
+          </div>
             <div className="mt-8 ml-3 mb-8 ">
               {album.name.length > 10 ? (
                 <div className="text-white">

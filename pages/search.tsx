@@ -72,7 +72,7 @@ export default function Search() {
               "flex bg-zinc-900 h-screen "
         }
       >
-        <div>
+        <div className="mdm:hidden">
           <Sidebar />
         </div>
 

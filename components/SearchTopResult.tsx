@@ -8,7 +8,7 @@ function SearchTopResult({ searcheadAlbums }: Props) {
     <>
       {searcheadAlbums &&
         searcheadAlbums?.body?.albums?.items[0] !== undefined && (
-          <div className="flex flex-row min-w-[700px] xlm:flex-col  ">
+          <div className="flex flex-row  xlm:flex-col  ">
             <div className="ml-5 mt-5 text-2xl  text-white">
               Top Result
               <div className="w-128 h-72 bg-zinc-800  mt-5">

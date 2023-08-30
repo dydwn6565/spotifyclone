@@ -25,19 +25,27 @@ function Sidebar({}: Props) {
   const [clickedPlaylist, setClickedPlaylist] = useState("");
   const [ addPlaylist, setAddPlaylist] = useState(false);
   const buttonRef = useRef(null);
+  const addPlaylistRef = useRef(null);
   // const debounceVal = useDebounce(playlists.length);
   useEffect(() => {
-    if (spotifyApi.getAccessToken()) {
-      spotifyApi.getUserPlaylists().then((data) => {
-        setPlaylists(data.body.items);
-      });
-    }
+    // if (spotifyApi.getAccessToken()) {
+    //   spotifyApi.getUserPlaylists().then((data) => {
+    //     setPlaylists(data.body.items);
+    //   });
+    // }
   }, [session, spotifyApi, createPlaylist]);
   useEffect(() => {
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
   }, [clickedPlaylist]);
+
+    useEffect(() => {
+    if (addPlaylistRef.current) {
+      addPlaylistRef.current.focus();
+    }
+  }, [addPlaylist]);
+
 
   const createPlayList = () => {
     console.log(playlists);
@@ -47,6 +55,8 @@ function Sidebar({}: Props) {
         .createPlaylist(`My playlist #${playlists.length + 1}`)
         .then((res) => {
           setCreatePlaylist(playlists.length + 1);
+        }).then(()=>{
+          setAddPlaylist(false);
         })
         .catch((err) => {
           console.log(err);
@@ -80,8 +90,7 @@ function Sidebar({}: Props) {
   ) => {
     e.preventDefault();
     console.log(spotifyApi);
-    // window.location.href="/";
-    // alert("ht");
+    
     try {
       if (spotifyApi) {
         spotifyApi
@@ -98,7 +107,9 @@ function Sidebar({}: Props) {
       alert(error);
     }
   };
-
+  const onblurDeleteAddPlaylist = ()=>{
+    setAddPlaylist(false);
+  }
   function showAddPlaylist() {
     setAddPlaylist(true)
   }
@@ -107,7 +118,7 @@ function Sidebar({}: Props) {
      setClickedPlaylist("");
   }
   return (
-    <div className="bg-black h-full w-64 min-w-48">
+    <div className="bg-black h-full  w-64">
       <div className="flex justify-start items-center mb-5 ">
         <div className="h-12 w-12 fill-slate-300  mt-6 mr-2">
           <Image src="/logo192.png" width={50} height={50} />
@@ -161,14 +172,15 @@ function Sidebar({}: Props) {
         <div>
           <div className="flex justify-start items-center  pb-5 cursor-pointer mt-5">
             <BsPlusSquare className="scale-150 fill-white" />
-            <div className="pl-6 text-white" onClick={showAddPlaylist} >
+            <div className="pl-6 text-white " onClick={showAddPlaylist} >
               Make the playlist 
             </div>
             
           </div>
-          {addPlaylist && <div className="absoulte w-40 h-15 bg-white cursor-point z-40 mr-15">
+          {addPlaylist && <div className="absolute w-32  h-12 bg-gray-500 outline-none cursor-pointer z-40 ml-24 flex items-center justify-center rounded-lg">
 
-             <div onClick={debouncedChangeHandler}>Add Playlist</div>
+             <div onClick={debouncedChangeHandler} ref={addPlaylistRef} onBlur={onblurDeleteAddPlaylist}
+                    tabIndex={0}>Add Playlist</div>
              
             </div>}
           
@@ -200,7 +212,7 @@ function Sidebar({}: Props) {
                 {clickedPlaylist == playlist.id ? (
                   <div
                     ref={buttonRef}
-                    className="border-4 border-white-500/100 m-1 absolute ml-96 z-50 w-30 h-20 bg-white cursor-default hover:bg-white text-black"
+                    className="absolute w-32  h-12 bg-gray-500 outline-none cursor-pointer z-40 ml-24 flex items-center justify-center rounded-lg hover:bg-white text-black"
                     onClick={(e) => {
                       deletePlaylist(e, playlist.id);
                     }}

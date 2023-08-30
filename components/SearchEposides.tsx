@@ -56,13 +56,13 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
       <>
         {searcheadEpisodes && searcheadEpisodes !== undefined && (
           <div className="ml-10">
-            <div className="text-3xl mt-2 text-white ">Episodes</div>
+            <div className="text-3xl mt-4 text-white ">Episodes</div>
             <div className="flex ">
               {filteredAlbumList &&
                 filteredAlbumList.map((episode) => (
                   <div key={episode.id}>
-                    <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 ">
-                      <div className="mt-10">
+                    <div className="w-60 h-80 bg-black flex flex-col items-center mr-10 mt-10 rounded-2xl">
+                      <div className="mt-10 ">
                         <Image
                           width={"160px"}
                           height={"160px"}

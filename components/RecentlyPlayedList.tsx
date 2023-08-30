@@ -81,10 +81,10 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
   
   return (
     <>
-      {filteredAlbumList && <h2 className="text-white text-2xl font-bold mt-5 mb-5">
+      {filteredAlbumList && <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5  mdm:text-center ">
         Recently Played Albums List
       </h2>}
-      <div className="flex  flex-wrap w-full min-w-[800px] ">
+      <div className="flex  flex-wrap w-full min-w-[800px] ml-5 mdm:text-center justify-center ">
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
             <div key={album?.track.name + index}>

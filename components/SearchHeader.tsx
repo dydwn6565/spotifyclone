@@ -22,7 +22,7 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
   //     };
   //   }, [recentlyPlayedList, hasWindow]);
   return (
-    <div className={`flex justify-between  bg-${color} min-w-[700px] `}>
+    <div className={`flex justify-between  bg-${color}  `}>
       <div className="flex">
         <div className="flex flex-row p-5 space-x-5 ml-5">
          

@@ -17,14 +17,14 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
     if (window.innerWidth >= 2000) {
       
       newReleaseAlbums.albums?.items.map((album, index) => {
-        index <= 6 && filtedData.push(album);
+        index <= 7 && filtedData.push(album);
       });
-      setAlbumSize(6);
+      setAlbumSize(7);
     }
     if (window.innerWidth < 2000 && window.innerWidth >= 1880) {
     
       newReleaseAlbums.albums?.items.map((album, index) => {
-        index <= 5 && filtedData.push(album);
+        index <= 6 && filtedData.push(album);
       });
       setAlbumSize(6)
     }
@@ -91,12 +91,12 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
     <div>
       
       {newReleaseAlbums && (
-        <h2 className="text-white text-2xl font-bold mt-5 mb-5">
+        <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5 mdm:text-center  ">
           New Release Albums List
         </h2>
       )}
 
-      <div className="flex  flex-wrap w-full  ">
+      <div className="flex  ml-5 w-calc(100vw-256px ) mdm:text-center mdm:justify-center">
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
             <div key={album?.name + index}>
