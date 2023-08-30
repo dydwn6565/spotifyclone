@@ -27,13 +27,13 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
         <div className="flex flex-row p-5 space-x-5 ml-5">
          
         </div>
-        <div className=" w-96 h-12 rounded-full mt-3  bg-white flex justify-even items-center">
+        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto ">
           <div className="ml-5 scale-150">
             <BsSearch />
           </div>
           <input
             type="text"
-            className=" ml-2 focus:outline-none"
+            className=" ml-2 focus:outline-none mdl:w-1/3"
             onChange={(e) => searchHanlder(e.target.value)}
           />
         </div>

@@ -30,11 +30,15 @@ module.exports = {
       // => @media (max-width: 1049px) { ... }
       lgm: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
-
+      mdl: { max: "850px" },
+      // => @media (max-width: 767px) { ... }
       mdm: { max: "730px" },
       // => @media (max-width: 767px) { ... }
 
       smm: { max: "639px" },
+      // => @media (max-width: 639px) { ... }
+      sms: { max: "535px" },
+      smxs: { max: "350px" },
       // => @media (max-width: 639px) { ... }
     },
     extend: {

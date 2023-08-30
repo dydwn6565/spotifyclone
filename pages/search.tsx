@@ -66,7 +66,7 @@ export default function Search() {
           searcheadArtists?.body?.artists?.items[0] !== undefined &&
           searcheadEpisodes?.body?.episodes?.items[0] !== undefined &&
           searcheadAlbums?.body?.albums?.items[0] !== undefined
-            ? "flex bg-zinc-900 h-full  "
+            ? "flex bg-zinc-900 h-full  mdm:justify-center"
             : 
             
               "flex bg-zinc-900 h-screen "
