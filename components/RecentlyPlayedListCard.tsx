@@ -6,12 +6,11 @@ type Props = {};
 const RecentlyPlayedListCard = ({ album, albumSize }: any) => {
   return (
     <div>
-      <div className="   items-center flex  flex-col mr-7 bg-zinc-900 p-5  ">
-        <div
+      <div className="   items-center flex  flex-col mr-7 bg-zinc-900 p-5 mdm:mr-2  ">
+        <div className="min-w-[150px] mdm:flex mdm:flex-col mdm:justify-center mdm:items-center"
           style={{
             width: (window.innerWidth - 1050) / albumSize + "px",
-            minWidth: "190px",
-            maxWidth: "190px",
+            
           }}
         >
           <div className="ml-3">

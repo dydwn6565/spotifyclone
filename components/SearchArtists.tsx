@@ -50,7 +50,7 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
     if (searcheadArtists?.body !== undefined) {
       resizeHanlder();
     }
-  }, []);
+  }, [searcheadArtists]);
   useEffect(() => {
     if (hasWindow && searcheadArtists?.body !== undefined) {
       window.addEventListener("resize", resizeHanlder);
@@ -59,6 +59,8 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
       window.removeEventListener("resize", resizeHanlder);
     };
   }, [searcheadArtists, hasWindow]);
+
+   
 
   return (
     <>

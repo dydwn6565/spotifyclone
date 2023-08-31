@@ -1,7 +1,16 @@
 import Image from 'next/image';
 import React,{useState,useEffect} from 'react'
 import RecentlyPlayedListCard from './RecentlyPlayedListCard';
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+// Default theme
+import "@splidejs/react-splide/css";
 
+// or other themes
+import "@splidejs/react-splide/css/skyblue";
+import "@splidejs/react-splide/css/sea-green";
+
+// or only core styles
+import "@splidejs/react-splide/css/core";
 type Props = {}
 
 const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
@@ -81,10 +90,10 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
   
   return (
     <>
-      {filteredAlbumList && <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5  mdm:text-center ">
+      {filteredAlbumList && <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5   mdm:text-center sms:text-[5vw] ">
         Recently Played Albums List
       </h2>}
-      <div className="flex  flex-wrap w-full min-w-[800px] ml-5 mdm:text-center justify-center ">
+      <div className="flex  flex-wrap  ml-5 mdm:text-center mdm:justify-center mdm:hidden mdm:ml-0">
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
             <div key={album?.track.name + index}>
@@ -95,6 +104,39 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
             
             </div>
           ))}
+      </div>
+      <div className="flex  w-calc(100vw-256px)  ml-5 hidden mdm:block mdm:text-center mdm:justify-center mdm:flex mdm:ml-0 ">
+        <Splide
+              aria-label="My Favorite Images"
+              options={{
+                rewind: true,
+                width: 400,
+                perPage: 1,
+                type: "loop",
+                padding: "0.1rem",
+                breakpoints: {
+                  535: {
+                    width:360,
+                    padding:"0.1rem"
+                  },
+                  350:{
+                    width:300,
+                    padding:"0.1rem"
+                  }
+                },
+              }}
+            >
+        {filteredAlbumList &&
+          filteredAlbumList.map((album: any, index: number) => (
+            <SplideSlide>
+            <div key={album?.track.name + index}>
+              <div className="max-lg">
+                <RecentlyPlayedListCard album={album} albumSize={albumSize} />
+              </div>
+            </div>
+            </SplideSlide>
+          ))}
+          </Splide>
       </div>
     </>
   );

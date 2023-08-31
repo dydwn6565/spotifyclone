@@ -49,7 +49,7 @@ const SearchShows = ({ searcheadShow }: Props) => {
     if (searcheadShow?.body !== undefined) {
       resizeHanlder();
     }
-  }, []);
+  }, [searcheadShow]);
   useEffect(() => {
     if (hasWindow && searcheadShow?.body !== undefined) {
       window.addEventListener("resize", resizeHanlder);

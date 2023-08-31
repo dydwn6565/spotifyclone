@@ -22,12 +22,12 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
   //     };
   //   }, [recentlyPlayedList, hasWindow]);
   return (
-    <div className={`flex justify-between  bg-${color}  `}>
+    <div className={`flex justify-between  bg-${color}  mdl:justify-start mdm:justify-center`}>
       <div className="flex">
-        <div className="flex flex-row p-5 space-x-5 ml-5">
+        <div className="flex flex-row p-5 space-x-5 ml-5 sms:p-0">
          
         </div>
-        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto mdm:h-10 mdm:w-40 mdm:ml-0 mdm:mt-4">
+        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto lgm:ml-0  mdm:h-10 mdm:w-40 mdm:ml-0 mdm:mt-4 sms:ml-10">
           <div className="ml-5 scale-150 mdm:scale-100">
             <BsSearch />
           </div>
@@ -47,10 +47,10 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
           </div>
         ) : (
           <>
-            <div className="flex">
-              <div className="text-white mt-1">Sign up</div>
-              <div className="w-36 h-10 bg-white rounded-full">
-                <div className="text-black flex justify-center items-center mt-1">
+            <div className="flex mt-5">
+              <div className="text-white mt-1 mr-5 ml-2 text-[15px] mdm:text-[13px] smxs:text-[12px] smxs:mr-1">Sign up</div>
+              <div className="w-20 h-10 bg-white rounded-full">
+                <div className="text-black flex justify-center items-center mt-1 text-[15px] mdm:text-[13px] smxs:text-[12px]">
                   <Link href="/login">
                     <a>Log in</a>
                   </Link>

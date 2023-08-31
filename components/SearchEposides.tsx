@@ -55,7 +55,7 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
     if(searcheadEpisodes?.body !== undefined){
         resizeHanlder();
     }
-   },[])
+   },[searcheadEpisodes])
    useEffect(() => {
      if (hasWindow && searcheadEpisodes?.body !== undefined) {
        

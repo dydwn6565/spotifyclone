@@ -1,6 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import PlayListCard from './PlayListCard';
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+// Default theme
+import "@splidejs/react-splide/css";
 
+// or other themes
+import "@splidejs/react-splide/css/skyblue";
+import "@splidejs/react-splide/css/sea-green";
+
+// or only core styles
+import "@splidejs/react-splide/css/core";
 type Props = {}
 
 function PlayedListComponents(items) {
@@ -86,7 +95,7 @@ function PlayedListComponents(items) {
      <div>
       
       {items && (
-        <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5 mdm:text-center ">
+        <h2 className="text-white text-2xl font-bold mt-5 mb-5 ml-5 mdm:text-center sms:text-[5vw]">
           Feactured Ablums
         </h2>
       )}
@@ -94,7 +103,7 @@ function PlayedListComponents(items) {
       {/* {console.log(filteredAlbumList)} */}
       </>
 
-      <div className="flex  ml-5 w-calc(100vw-256px) mdm:text-center mdm:justify-center">
+      <div className="flex  ml-5 w-calc(100vw-256px) mdm:text-center mdm:justify-center mdm:hidden">
         {
           filteredAlbumList.map((album: any, index: number) => (
             <div key={album?.name + index}>
@@ -103,6 +112,40 @@ function PlayedListComponents(items) {
               </div>
             </div>
           ))}
+      </div>
+      
+       <div className="flex  ml-5 w-calc(100vw-256px) hidden mdm:text-center mdm:justify-center mdm:block mdm:flex mdm:ml-0">
+        <Splide
+              aria-label="My Favorite Images"
+              options={{
+                rewind: true,
+                width: 500,
+                perPage: 2,
+                type: "loop",
+                padding: "0.1rem",
+                breakpoints: {
+                  535: {
+                    width:360,
+                    padding:"0.1rem"
+                  },
+                  350:{
+                    width:300,
+                    padding:"0.1rem"
+                  }
+                },
+              }}
+            >
+        {
+          filteredAlbumList.map((album: any, index: number) => (
+             <SplideSlide>
+            <div key={album?.name + index}>
+              <div className="max-lg">
+                <PlayListCard album={album} albumSize={albumSize} />
+              </div>
+            </div>
+            </SplideSlide>
+          ))}
+          </Splide>
       </div>
     </div>
   )
