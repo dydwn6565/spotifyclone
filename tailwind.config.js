@@ -25,8 +25,10 @@ module.exports = {
       // => @media (max-width: 1535px) { ... }
 
       xlm: { max: "1279px" },
+
+      xlml:{max:"1132px"},
       // => @media (max-width: 1279px) { ... }
-      tenfornine: { max: "1049px" },
+      xls: { max: "1054px" },
       // => @media (max-width: 1049px) { ... }
       lgm: { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
