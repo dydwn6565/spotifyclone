@@ -9,13 +9,13 @@ const myplaylistid = (props: Props) => {
   return (
     
       <>
-        <div className="flex ">
-          <div>
+        <div className="flex  ">
+          <div className='mdl:hidden'>
 
           <Sidebar />
           </div>
 
-          <div >
+          <div  >
             <MyPlaylist />
           </div>
         </div>

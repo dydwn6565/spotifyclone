@@ -28,11 +28,12 @@ function Sidebar({}: Props) {
   const addPlaylistRef = useRef(null);
   // const debounceVal = useDebounce(playlists.length);
   useEffect(() => {
-    // if (spotifyApi.getAccessToken()) {
-    //   spotifyApi.getUserPlaylists().then((data) => {
-    //     setPlaylists(data.body.items);
-    //   });
-    // }
+    console.log("hit");
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi.getUserPlaylists().then((data) => {
+        setPlaylists(data.body.items);
+      });
+    }
   }, [session, spotifyApi, createPlaylist]);
   useEffect(() => {
     if (buttonRef.current) {

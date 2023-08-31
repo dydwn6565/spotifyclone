@@ -30,17 +30,17 @@ const SearchShows = ({ searcheadShow }: Props) => {
       setAlbumSize(3);
     }
 
-    if (window.innerWidth < 1100) {
+    if (window.innerWidth < 1380 && window.innerWidth >= 730) {
       searcheadShow.body.shows.items.map((artist, index) => {
         index <= 1 && filtedData.push(artist);
       });
       setAlbumSize(2);
     }
-    if (window.innerWidth <= 730) {
+    if (window.innerWidth < 730) {
       searcheadShow.body.shows.items.map((artist, index) => {
-        index <= 1 && filtedData.push(artist);
+        index <= 6 && filtedData.push(artist);
       });
-      setAlbumSize(2);
+      setAlbumSize(6);
     }
 
     setFilteredAlbumList(filtedData);

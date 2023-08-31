@@ -35,13 +35,14 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
        setAlbumSize(3);
      }
      
-     if (window.innerWidth < 1100) {
+     if (window.innerWidth < 1100 && window.innerWidth >= 730) {
        searcheadEpisodes.body.episodes.items.map((artist, index) => {
          index <= 1 && filtedData.push(artist);
        });
        setAlbumSize(2);
      }
-      if (window.innerWidth <= 790) {
+     
+      if (window.innerWidth < 730) {
        searcheadEpisodes.body.episodes.items.map((artist, index) => {
          index <= 6 && filtedData.push(artist);
        });

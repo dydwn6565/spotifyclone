@@ -7,7 +7,7 @@ type Props = {}
 
 function BottomNav({}: Props) {
   return (
-    <div className="mdm:fixed mdm:bottom-0 mdm:w-full mdm:h-20 mdm:text-white mdm:bg-zinc-900 mdm:flex mdm:mt-6 mdm:place-content-evenly">
+    <div className="mdm:z-10 mdm:fixed mdm:bottom-0 mdm:w-full mdm:h-20 mdm:text-white mdm:bg-zinc-900 mdm:flex mdm:mt-6 mdm:place-content-evenly">
         <Link href={"/"}>
           <div className="text-white pb-3 mt-6 cursor-pointer">
             <>

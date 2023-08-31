@@ -71,7 +71,7 @@ function Player({}: Props) {
   // );
 
   return (
-    <div className="sticky bottom-0 h-28 bg-slate-800 text-white grid grid-cols-3 text-xs min-w-[1036px] md:text-base px-2   ">
+    <div className="sticky bottom-0 h-28 bg-slate-800 text-white grid grid-cols-3 text-xs  md:text-base px-2   ">
       <div className="flex items-center space-x-4 ">
         <Image
           width={"40px"}

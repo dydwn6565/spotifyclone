@@ -141,23 +141,23 @@ function MyPlaylist({}: Props) {
       
       className={ selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined &&
         recommendedSong?.body?.tracks.length > num.toFixed(1)
-         ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black tenfornine:w-781" :
+         ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black mdl:w-[97.9vw] mdm:w-[97.8vw]" :
         //  "h-[calc(1200px+100px)] bg-slate-900 w-[calc(100vw-273px)]"}
-         "min-h-screen bg-slate-900  w-[calc(100vw-273px)] tenfornine:w-781"}
+         "min-h-screen bg-slate-900  w-[calc(100vw-273px)] mdl:w-[97.9vw] mdm:w-[97.8vw] "}
     //  min-h-screen  min-w-screen w-[calc(100vw-273px)] lgm:w-full
       >
         <div>
           <Head color={"slate"} />
-          <div className="flex ">
+          <div className="flex sms:inline ">
             {selectedPlaylist &&
             selectedPlaylist[0]?.images[0] === undefined ? (
-              <div className="h-72 w-72 bg-slate-700 ml-7 flex items-center justify-center mt-5">
-                <div className="text-7xl ">
+              <div className="h-72 w-72 bg-slate-700 ml-7 flex items-center justify-center mt-5 xls:hidden">
+                <div className="text-7xl  ">
                   <BsMusicNoteBeamed />
                 </div>
               </div>
             ) : (
-              <div className="ml-7 mt-5">
+              <div className="ml-7 mt-5 xls:hidden">
                 <Image
                   width={"288px"}
                   height={"288px"}
@@ -167,15 +167,15 @@ function MyPlaylist({}: Props) {
               </div>
             )}
 
-            <div>
-              <div className="text-white ml-5 mt-10">
+            <div className="sms:flex sms:justify-center sms:items-center">
+              <div className="text-white ml-5 mt-10 xls:hidden">
                 {selectedPlaylist && selectedPlaylist[0]?.type}
               </div>
-              <div className="text-white text-8xl ml-3 mt-5 lgm:text-5xl 2xlm:text-7xl ">
+              <div className="text-white text-8xl ml-3 mt-5 lgm:text-5xl 2xlm:text-7xl xls:text-[9vw] sms:text-[7vw] ">
                 {selectedPlaylist && selectedPlaylist[0]?.name}
               </div>
 
-              <div className="flex space-x-1 mt-20 ml-5">
+              <div className="flex space-x-1 mt-20 ml-5 xls:hidden">
                 <div className="text-white">
                   {selectedPlaylist && selectedPlaylist[0]?.owner.display_name}
                 </div>
@@ -191,11 +191,11 @@ function MyPlaylist({}: Props) {
           </div>
 
           {selectedPlaylist && selectedPlaylist[0]?.images[0] !== undefined && (
-            <div className="grid grid-cols-12 mt-10 text-white mb-5">
-              <div className="col-span-5 ml-10"># Title</div>
-              <div className="col-span-3 ">Album</div>
-              <div className="col-span-2 ml-12 ">Added Date</div>
-              <div className="col-span-1 ml-24">
+            <div className="grid grid-cols-12 mt-10 text-white mb-5 mdl:text-[2vw]">
+              <div className="col-span-5 ml-10 xls:col-span-5 " ># Title</div>
+              <div className="col-span-3 xls:col-span-2">Album</div>
+              <div className="col-span-2 ml-12 xls:col-span-2 xls:ml-0 ">Added Date</div>
+              <div className="col-span-1 ml-24 mdl:text-[2vw] smm:ml-[15vw]">
                 <AiOutlineClockCircle />
               </div>
             </div>
@@ -210,7 +210,7 @@ function MyPlaylist({}: Props) {
                     className="  ml-10 p-2 grid grid-cols-12 items-center "
                     onClick={() => playSong(index)}
                   >
-                    <div className="text-white flex -ml-2  col-span-4">
+                    <div className="text-white flex -ml-2  col-span-4 xls:col-span-4 mdl:text-[2vw]">
                       <div className="mr-5 mt-2">{index + 1}</div>
                       <Image
                         width={"48px"}
@@ -223,15 +223,15 @@ function MyPlaylist({}: Props) {
                         <div>{song.track.artists[0].name}</div>
                       </div>
                     </div>
-                    <div className="col-span-4 text-white ml-20">
+                    <div className="col-span-4 text-white ml-20 xls:col-span-3 xls:ml-4 mdl:text-[2vw]">
                       {song.track.album.name}
                     </div>
 
-                    <div className="col-span-2 text-white ml-10">
+                    <div className="col-span-2 text-white ml-10 xls:col-span-3 xls:-ml-4 mdl:text-[2vw]">
                       {subtractDate(song.added_at)} days ago
                       
                     </div>
-                    <div className="text-white ml-20">
+                    <div className="text-white ml-20 xls:ml-8 mdl:text-[2vw] smm:ml-[4vw]">
                       {millisToMinutesAndSeconds(song.track.duration_ms)}
                     </div>
                   </div>
@@ -239,13 +239,13 @@ function MyPlaylist({}: Props) {
               ))}
           </div>
           {selectedPlaylist && selectedPlaylist[0]?.images[0] === undefined ? (
-            <div className="text-2xl ml-10 mt-5 text-white">
+            <div className="text-2xl ml-10 mt-5 text-white sms:text-[3vw] sms:flex sms:justify-center sms:ml-0">
               Find your song to add into your Playlist
             </div>
           ) : (
             <>
-              <div className="text-2xl ml-10 text-white my-5">Recommend</div>
-              <div className="text-lg ml-10 text-white mb-3">
+              <div className="text-2xl ml-10 text-white my-5 sms:text-[3vw] sms:my-3">Recommend</div>
+              <div className="text-lg ml-10 text-white mb-3 sms:text-[2.5vw]">
                 Based on Song in this Playlist
               </div>
             </>
@@ -255,8 +255,8 @@ function MyPlaylist({}: Props) {
             selectedPlaylist[0]?.images[0] !== undefined ? (
               recommendedSong?.body?.tracks.map((song, index) => (
                 <div key={song.album.id + index}>
-                  <div className="  ml-10 p-2 grid grid-cols-11 items-center">
-                    <div className="text-white flex -ml-2  col-span-4">
+                  <div className="  ml-10 p-2 grid grid-cols-11 items-center xls:text-[1.3vw] mdl:text-[2vw] smm:text-[1.7vw]">
+                    <div className="text-white flex -ml-2  col-span-5">
                       <Image
                         width={"48px"}
                         height={"48px"}
@@ -264,16 +264,22 @@ function MyPlaylist({}: Props) {
                         src={song.album.images[0].url}
                         alt={song.album.id}
                       />
-                      <div className=" text-white ml-2 ">
+                      <div className=" text-white ml-2 sms:mt-[2.5vw]">
                         <div>{song.name}</div>
                         <div>{song.artists[0].name}</div>
                       </div>
                     </div>
-                    <div className="col-span-5 text-white">
+                    <div className="col-span-4 text-white">
                       {song.album.name}
                     </div>
                     <div
-                      className="h-10 w-20 rounded-full border-solid border-2 border-indigo-white text-white flex items-center justify-center cursor-pointer"
+                      className="h-10 w-20 rounded-full border-solid border-2 border-indigo-white text-white flex items-center justify-center cursor-pointer sms:w-12 smxs:hidden"
+                      onClick={() => addSongToPlaylist(song.uri)}
+                    >
+                      Add
+                    </div>
+                     <div
+                      className=" hidden   cursor-pointer sms:w-12 smxs:block smxs:text-white "
                       onClick={() => addSongToPlaylist(song.uri)}
                     >
                       Add
