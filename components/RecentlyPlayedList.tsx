@@ -128,8 +128,8 @@ const RecentlyPlayedList = ({ recentlyPlayedList }: any) => {
             >
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
-            <SplideSlide>
-            <div key={album?.track.name + index}>
+            <SplideSlide key={album?.track.name + index}>
+            <div >
               <div className="max-lg">
                 <RecentlyPlayedListCard album={album} albumSize={albumSize} />
               </div>

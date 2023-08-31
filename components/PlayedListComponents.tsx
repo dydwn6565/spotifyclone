@@ -137,8 +137,8 @@ function PlayedListComponents(items) {
             >
         {
           filteredAlbumList.map((album: any, index: number) => (
-             <SplideSlide>
-            <div key={album?.name + index}>
+             <SplideSlide key={album?.name + index}>
+            <div >
               <div className="max-lg">
                 <PlayListCard album={album} albumSize={albumSize} />
               </div>

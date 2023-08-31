@@ -146,8 +146,8 @@ const NewReleaseAlbumList = ( {newReleaseAlbums} : any) => {
             >
         {filteredAlbumList &&
           filteredAlbumList.map((album: any, index: number) => (
-            <SplideSlide>
-            <div key={album?.name + index}>
+            <SplideSlide key={album?.name + index}>
+            <div >
               <div className="max-lg">
                 <NewRelaseAlbumCard album={album} albumSize={albumSize} />
               </div>

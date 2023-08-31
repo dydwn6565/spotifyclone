@@ -134,8 +134,8 @@ const SearchEposides = ({searcheadEpisodes}: Props) => {
             >
               {filteredAlbumList &&
                 filteredAlbumList.map((episode) => (
-                  <SplideSlide>
-                  <div key={episode.id}>
+                  <SplideSlide key={episode.id}>
+                  <div >
                     <div className="w-48 h-80 bg-black rounded-2xl flex flex-col items-center mr-10 rounded-2xl sms:w-[125px] sms:h-48 smxs:w-[95px] smxs:h-36">
                       <div className="mt-10 mdm:w-[120px] mdm:h-[120px] sms:w-[17vw] sms:h-[17vw] sms:-mt-[-14px] ">
                         <Image

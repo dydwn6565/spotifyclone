@@ -120,8 +120,8 @@ const SearchArtists = ({ searcheadArtists }: Props) => {
             >
               {filteredAlbumList &&
                 filteredAlbumList.map((artist) => (
-                  <SplideSlide>
-                    <div key={artist?.id}>
+                  <SplideSlide key={artist?.id}>
+                    <div >
                       <div className="w-48 h-80 bg-black rounded-2xl flex mr-10 flex-col items-center sms:w-[125px] sms:h-48 smxs:w-[95px] smxs:h-36">
                         <div className="rounded-full mt-10">
                           <div className="mdm:w-[120px] mdm:h-[120px] sms:w-[17vw] sms:h-[17vw] sms:-mt-5">

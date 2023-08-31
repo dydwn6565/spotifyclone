@@ -124,8 +124,8 @@ const SearchShows = ({ searcheadShow }: Props) => {
                   }}
                 >
                   {filteredAlbumList.map((show) => (
-                    <SplideSlide>
-                      <div key={show.id}>
+                    <SplideSlide key={show.id}>
+                      <div >
                         <div className="w-48 h-80 bg-black flex rounded-2xl flex-col items-center mr-10 mt-10 sms:w-[125px] sms:h-48 smxs:w-[95px] smxs:h-36 sms:mt-0">
                           <div className="mt-10 mdm:w-[120px] mdm:h-[120px] sms:w-[17vw] sms:h-[17vw] sms:-mt-[-14px]">
                             <Image
