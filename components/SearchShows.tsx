@@ -65,7 +65,7 @@ const SearchShows = ({ searcheadShow }: Props) => {
         {searcheadShow &&
           searcheadShow?.body?.shows?.items[0] !== undefined && (
             <div className="ml-10 mdm:ml-0">
-              <div className="text-3xl my-5 text-white mdm:flex mdm:justify-center sms:text-[5vw]">
+              <div className="">
                 Shows
               </div>
               <div className="flex mdm:justify-center mdm:hidden">

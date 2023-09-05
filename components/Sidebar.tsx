@@ -10,7 +10,7 @@ import useSpotify from "../hooks/useSpotify";
 import { useSession } from "next-auth/react";
 import { useRecoilState } from "recoil";
 import { RiSpotifyFill } from "react-icons/ri";
-import { playlistIdState, playlistState } from "../atoms/playlistAtom";
+import {  playlistState } from "../atoms/playlistAtom";
 import Link from "next/link";
 import useDebounce from "../hooks/useDebounce";
 import { debounce } from "lodash";
@@ -23,12 +23,11 @@ function Sidebar({}: Props) {
   const [playlists, setPlaylists] = useRecoilState(playlistState);
   const [createPlaylist, setCreatePlaylist] = useState();
   const [clickedPlaylist, setClickedPlaylist] = useState("");
-  const [ addPlaylist, setAddPlaylist] = useState(false);
+  const [addPlaylist, setAddPlaylist] = useState(false);
   const buttonRef = useRef(null);
   const addPlaylistRef = useRef(null);
   // const debounceVal = useDebounce(playlists.length);
   useEffect(() => {
-    console.log("hit");
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then((data) => {
         setPlaylists(data.body.items);
@@ -41,22 +40,20 @@ function Sidebar({}: Props) {
     }
   }, [clickedPlaylist]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (addPlaylistRef.current) {
       addPlaylistRef.current.focus();
     }
   }, [addPlaylist]);
 
-
   const createPlayList = () => {
-    console.log(playlists);
-    console.log(spotifyApi);
     if (spotifyApi) {
       spotifyApi
         .createPlaylist(`My playlist #${playlists.length + 1}`)
         .then((res) => {
           setCreatePlaylist(playlists.length + 1);
-        }).then(()=>{
+        })
+        .then(() => {
           setAddPlaylist(false);
         })
         .catch((err) => {
@@ -64,9 +61,7 @@ function Sidebar({}: Props) {
         });
     }
   };
- const debouncedChangeHandler = useCallback(
-    debounce(createPlayList, 200)
-  , []);
+  const debouncedChangeHandler = useCallback(debounce(createPlayList, 200), []);
   const linktoPlaylist = (
     e: React.MouseEvent<HTMLDivElement>,
     playlistIdState: string
@@ -80,9 +75,8 @@ function Sidebar({}: Props) {
     playlistId: string
   ) => {
     e.preventDefault();
-   
+
     setClickedPlaylist(playlistId);
-    
   };
 
   const deletePlaylist = async (
@@ -90,8 +84,7 @@ function Sidebar({}: Props) {
     playlistId: string
   ) => {
     e.preventDefault();
-    console.log(spotifyApi);
-    
+
     try {
       if (spotifyApi) {
         spotifyApi
@@ -108,15 +101,15 @@ function Sidebar({}: Props) {
       alert(error);
     }
   };
-  const onblurDeleteAddPlaylist = ()=>{
+  const onblurDeleteAddPlaylist = () => {
     setAddPlaylist(false);
-  }
+  };
   function showAddPlaylist() {
-    setAddPlaylist(true)
+    setAddPlaylist(true);
   }
   function onblurDeletePlaylist() {
     console.log("onblur");
-     setClickedPlaylist("");
+    setClickedPlaylist("");
   }
   return (
     <div className="bg-black h-full  w-64">
@@ -173,18 +166,22 @@ function Sidebar({}: Props) {
         <div>
           <div className="flex justify-start items-center  pb-5 cursor-pointer mt-5">
             <BsPlusSquare className="scale-150 fill-white" />
-            <div className="pl-6 text-white " onClick={showAddPlaylist} >
-              Make the playlist 
+            <div className="pl-6 text-white " onClick={showAddPlaylist}>
+              Make the playlist
             </div>
-            
           </div>
-          {addPlaylist && <div className="absolute w-32  h-12 bg-gray-500 outline-none cursor-pointer z-40 ml-24 flex items-center justify-center rounded-lg">
-
-             <div onClick={debouncedChangeHandler} ref={addPlaylistRef} onBlur={onblurDeleteAddPlaylist}
-                    tabIndex={0}>Add Playlist</div>
-             
-            </div>}
-          
+          {addPlaylist && (
+            <div className="absolute w-32  h-12 bg-gray-500 outline-none cursor-pointer z-40 ml-24 flex items-center justify-center rounded-lg">
+              <div
+                onClick={debouncedChangeHandler}
+                ref={addPlaylistRef}
+                onBlur={onblurDeleteAddPlaylist}
+                tabIndex={0}
+              >
+                Add Playlist
+              </div>
+            </div>
+          )}
         </div>
 
         <hr className="my-5  w-48 h-px bg-gray-100  border-0  dark:bg-gray-700" />
@@ -220,7 +217,7 @@ function Sidebar({}: Props) {
                     // onFocus={(e) => {
                     //   deletePlaylist(e, playlist.id);
                     // }}
-                    
+
                     onBlur={onblurDeletePlaylist}
                     tabIndex={0}
                   >

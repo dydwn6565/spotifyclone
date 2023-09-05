@@ -1,16 +1,17 @@
 import Link from "next/link";
 import React, { FC, Dispatch, SetStateAction,useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { BsSearch } from "react-icons/bs";
+import { BsArrowLeftCircleFill, BsSearch } from "react-icons/bs";
 import VerifiedLogin from "./VerifiedLogin";
 import { useSession } from "next-auth/react";
-
+import { useRouter } from 'next/router'
 interface ChildPropsType {
   searchHanlder: Dispatch<SetStateAction<string | undefined>>;
   color:string;
 }
 const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
   const { data: session, status } = useSession();
+      const router = useRouter()
   // const hasWindow = typeof window !== "undefined";
   //   useEffect(() => {
   //     if (hasWindow && recentlyPlayedList !== undefined) {
@@ -24,10 +25,10 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
   return (
     <div className={`flex justify-between  bg-${color}  mdl:justify-start mdm:justify-center`}>
       <div className="flex">
-        <div className="flex flex-row p-5 space-x-5 ml-5 sms:p-0">
-         
+        <div className="flex justify-center items-center flex-row p-5 space-x-5 ml-5 sms:p-0">
+         <BsArrowLeftCircleFill className='fill-white ml-5 mt-3 scale-225 lgm:-mt-2  mdl:scale-195 mdm:mt-0 sms:scale-155 smxs:ml-0 cursor-pointer'onClick={() => router .back()}/>
         </div>
-        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto lgm:ml-0  mdm:h-10 mdm:w-40 mdm:ml-0 mdm:mt-4 sms:ml-10">
+        <div className=" w-72 h-12 rounded-full mt-3 ml-24  bg-white flex justify-even items-center mdl:w-auto lgm:ml-0  mdm:h-10 mdm:w-40 mdm:ml-0 mdm:mt-4 sms:ml-4 sms:w-24 sms:h-8 sms:mt-5">
           <div className="ml-5 scale-150 mdm:scale-100">
             <BsSearch />
           </div>
@@ -41,7 +42,7 @@ const SearchHeader: FC<ChildPropsType> = ({ searchHanlder,color }) => {
       <div className="relative  top-0 right-0 lg:absolute">
         {session ? (
           <div className="flex flex-row p-5 space-x-10 text-lg   ">
-            <div className="mr-10">
+            <div className="mr-10 sms:mr-0">
               <VerifiedLogin />
             </div>
           </div>

@@ -17,6 +17,8 @@ import Link from "next/link";
 import { GrHomeRounded } from "react-icons/gr";
 import { BsSearch } from "react-icons/bs";
 import BottomNav from "./BottomNav";
+import MyPlayListList from "./MyPlayListList";
+
 type Props = {};
 
 function Main({}: Props) {
@@ -39,6 +41,7 @@ function Main({}: Props) {
     //   }).then((result)=>{
     window.location.href = `/playlist/${selectedAlbumid}`;
   };
+  
 
   return (
     <>
@@ -46,15 +49,19 @@ function Main({}: Props) {
         <Head color={"zinc"} />
 
         <title>Music Land</title>
+        <div className="hidden mdm:block">
+
+        <MyPlayListList />  
+        </div>
         <RecentlyPlayedList recentlyPlayedList={recentlyPlayedList} />
         <NewReleaseAlbumList newReleaseAlbums={newReleaseAlbums} />
         <RecommendationAlbum recommendationAlbum={recommendationAlbum} />
         <PlayedListComponents items={useGetFeaturedAlbumList} />
+        
       </div>
       <div className="hidden mdm:block">
-<BottomNav />
+        <BottomNav />
       </div>
-      
     </>
   );
 }

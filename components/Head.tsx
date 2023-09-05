@@ -1,30 +1,35 @@
-import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import React from 'react'
-// import { IoIosArrowDropleftCircle } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import VerifiedLogin from './VerifiedLogin';
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
+import { useRouter } from "next/router";
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
-
+import VerifiedLogin from "./VerifiedLogin";
 
 type Props = {
-  color: string
-}
+  color: string;
+};
 
 function Head({ color }: Props) {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   return (
     <div>
       <div className={`flex justify-between bg-${color}`}>
-        <div className="flex flex-row p-5 space-x-5 ml-5">
-       
+        <div className="flex flex-row p-5 space-x-5 ml-5 justfiy-center items-center">
+          {router.asPath != "/" && (
+            <BsArrowLeftCircleFill
+              className="fill-white ml-5 scale-225 mdl:scale-195 sms:scale-155 cursor-pointer"
+              onClick={() => router.back()}
+            />
+          )}
+          <></>
         </div>
 
         <div className="flex flex-row p-5 space-x-10 text-lg ">
           {session ? (
-            <div className="mr-10">
+            <div className="mr-5 mdl:mr-2">
               <VerifiedLogin />
             </div>
           ) : (
@@ -45,4 +50,4 @@ function Head({ color }: Props) {
   );
 }
 
-export default Head
+export default Head;

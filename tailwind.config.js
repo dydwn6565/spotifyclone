@@ -26,7 +26,7 @@ module.exports = {
 
       xlm: { max: "1279px" },
 
-      xlml:{max:"1132px"},
+      xlml: { max: "1132px" },
       // => @media (max-width: 1279px) { ... }
       xls: { max: "1054px" },
       // => @media (max-width: 1049px) { ... }
@@ -59,8 +59,10 @@ module.exports = {
       },
       scale: {
         875: "8.75",
-        125: "1.25",
         225: "2.25",
+        195: "1.95",
+        155:"1.55",
+        125: "1.25",
       },
       spacing: {
         unset: "unset",

@@ -143,7 +143,7 @@ function MyPlaylist({}: Props) {
         recommendedSong?.body?.tracks.length > num.toFixed(1)
          ? "w-[calc(100vw-273px)] h-full bg-gradient-to-b from-blue-500 to-black mdl:w-[97.9vw] mdm:w-[97.8vw]" :
         //  "h-[calc(1200px+100px)] bg-slate-900 w-[calc(100vw-273px)]"}
-         "min-h-screen bg-slate-900  w-[calc(100vw-273px)] mdl:w-[97.9vw] mdm:w-[97.8vw] "}
+         "min-h-screen bg-slate-900  w-[calc(100vw-273px)] mdl:w-[97.9vw] mdm:w-[97.85vw] smm:w-[97.3vw] sms:w-[97vw] smxs:w-[95.5vw]"}
     //  min-h-screen  min-w-screen w-[calc(100vw-273px)] lgm:w-full
       >
         <div>
